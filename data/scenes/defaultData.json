@@ -1,0 +1,53 @@
+{
+  "videos": [
+    {
+      "id": 0,
+      "path": "/videos/swimming_pool/hero_2-hero_2.mp4",
+      "loop": true,
+      "type": "hero-loop"
+    },
+    {
+      "id":1,
+      "path":"/videos/apt/iso1-iso1.mp4",
+      "loop":true,
+      "type":"iso1-loop"
+    },
+    {
+      "id":2,
+      "path":"/videos/apt/iso2-iso2.mp4",
+      "loop":true,
+      "type":"iso2-loop"
+    }
+  ],
+  "actions": {
+    "hero": {
+      "transitions": {
+        "swim1-loop": 2,
+        "swim2-loop": 5,
+        "Club1-loop": 2,
+        "Club2-loop": 5,
+        "Park1-loop": 2,
+        "Park2-loop": 5,
+        "Apt901_ext1-loop":2,
+        "Apt901_int1-loop":5,
+        "4-loop": 11,
+        "3-loop": 8,
+        "2-loop": 5,
+        "1-loop":13,
+        "iso1-loop":10,
+        "iso2-loop":11,
+        "ext1-loop":12
+      }
+    },
+    "iso1":{
+      "transitions": {
+
+      }
+    },
+    "iso2":{
+      "transitions":{
+
+      }
+    }
+  }
+}

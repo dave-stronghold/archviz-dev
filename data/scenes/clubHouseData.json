@@ -1,0 +1,59 @@
+{
+  "videos": [
+    {},
+    {
+      "id": 1,
+      "path": "/videos/club_house/hero_2-Club_1.mp4",
+      "to": 3
+    },
+    {
+      "id": 2,
+      "path": "/videos/club_house/Club_1-hero_2.mp4",
+      "toDefault": true
+    },
+    {
+      "id": 3,
+      "path": "/videos/club_house/Club_1-Club_1.mp4",
+      "loop": true,
+      "type": "Club1-loop"
+    },
+
+    {
+      "id": 4,
+      "path": "/videos/club_house/hero_2-Club_2.mp4",
+      "to": 6
+    },
+    {
+      "id": 5,
+      "path": "/videos/club_house/Club_2-hero_2.mp4",
+      "toDefault": true
+    },
+    {
+      "id": 6,
+      "path": "/videos/club_house/Club_2-Club_2.mp4",
+      "loop": true,
+      "type": "Club2-loop"
+    },
+
+    {
+      "id": 7,
+      "path": "/videos/club_house/Club_2-Club_1.mp4",
+      "to": 3
+    },
+    {
+      "id": 8,
+      "path": "/videos/club_house/Club_1-Club_2.mp4",
+      "to": 6
+    }
+  ],
+  "actions": {
+    "Club1": {
+      "path": "/videos/club_house/Club_1-Club_1_thumb.png",
+      "transitions": { "hero-loop": 1, "Club2-loop": 7 }
+    },
+    "Club2": {
+      "path": "/videos/club_house/Club_2-Club_2_thumb.png",
+      "transitions": { "hero-loop": 4, "Club1-loop": 8 }
+    }
+  }
+}

@@ -1,0 +1,158 @@
+{
+  "videos": [
+    {
+      "id": 0,
+      "path": "videos/interior/iso1-lr1.mp4",
+      "to": 17
+    },
+    {
+      "id": 1,
+      "path": "/videos/interior/lr1-bd1a.mp4",
+      "to": 8
+    },
+    {
+      "id": 2,
+      "path": "/videos/interior/bd1a-bd2a.mp4",
+      "to": 11
+    },
+    {
+      "id": 3,
+      "path": "/videos/interior/bd2a-Kit1.mp4",
+      "to": 20
+    },
+    {
+      "id": 4,
+      "path": "/videos/interior/Kit1-bd3a.mp4",
+      "to": 14
+    },
+    {
+      "id": 5,
+      "path": "/videos/interior/bd3a-lr1.mp4",
+      "to": 17
+    },
+    {
+      "id": 6,
+      "path": "/videos/interior/lr1-iso1.mp4",
+      "toIso1": true
+    },
+    {
+      "id": 7,
+      "path": "/videos/interior/lr1-iso2.mp4",
+      "toIso2": true
+    },
+    {
+      "id": 8,
+      "path": "/videos/interior/bd1a-bd1a.mp4",
+      "loop": true,
+      "type": "bd1a-loop",
+      "sub":"bd1"
+    },
+    {
+      "id": 9,
+      "path": "/videos/interior/bd1b-bd1b.mp4",
+      "loop": true,
+      "type": "bd1b-loop",
+      "sub":"bd1"
+    },
+    {
+      "id": 10,
+      "path": "/videos/interior/bd1c-bd1c.mp4",
+      "loop": true,
+      "type": "bd1c-loop",
+      "sub":"bd1"
+    },
+    {
+      "id": 11,
+      "path": "/videos/interior/bd2a-bd2a.mp4",
+      "loop": true,
+      "type": "bd2a-loop",
+      "sub":"bd2"
+    },
+    {
+      "id": 12,
+      "path": "/videos/interior/bd2b-bd2b.mp4",
+      "loop": true,
+      "type": "bd2b-loop",
+      "sub":"bd2"
+    },
+    {
+      "id": 13,
+      "path": "/videos/interior/bd2c-bd2c.mp4",
+      "loop": true,
+      "type": "bd2c-loop",
+      "sub":"bd2"
+    },
+    {
+      "id": 14,
+      "path": "/videos/interior/bd3a-bd3a.mp4",
+      "loop": true,
+      "type": "bd3a-loop",
+      "sub":"bd3"
+    },
+    {
+      "id": 15,
+      "path": "/videos/interior/bd3b-bd3b.mp4",
+      "loop": true,
+      "type": "bd3b-loop",
+      "sub":"bd3"
+    },
+    {
+      "id": 16,
+      "path": "/videos/interior/bd3c-bd3c.mp4",
+      "loop": true,
+      "type":"bd3c-loop",
+      "sub":"bd3"
+    },
+    {
+      "id": 17,
+      "path": "/videos/interior/lr1-lr1.mp4",
+      "loop": true,
+      "type": "lr1-loop",
+      "sub":"lr"
+    },
+    {
+      "id": 18,
+      "path": "/videos/interior/lr2-lr2.mp4",
+      "loop": true,
+      "type": "lr2-loop",
+      "sub":"lr"
+    },
+    {
+      "id": 19,
+      "path": "/videos/interior/lr3-lr3.mp4",
+      "loop": true,
+      "type": "lr3-loop",
+      "sub":"lr"
+    },
+    {
+      "id": 20,
+      "path": "/videos/interior/Kit1-Kit1.mp4",
+      "loop": true,
+      "type": "Kit1-loop",
+      "sub":"kit"
+    },
+    {
+      "id": 21,
+      "path": "/videos/interior/Kit2-Kit2.mp4",
+      "loop": true,
+      "type": "Kit2-loop",
+      "sub":"kit"
+    },
+    {
+      "id": 22,
+      "path": "/videos/interior/Kit3-Kit3.mp4",
+      "loop": true,
+      "type": "Kit3-loop",
+      "sub":"kit"
+    },{
+      "id": 23,
+      "path": "/videos/interior/iso2-lr1.mp4",
+      "to":17
+    }
+  ],
+  "actions": {
+    "Next_in": {
+      "transitions": { "lr1-loop": 1, "bd1a-loop": 2,"bd2a-loop":3,"Kit1-loop":4,"bd3a-loop":5 }
+    }
+  }
+}
