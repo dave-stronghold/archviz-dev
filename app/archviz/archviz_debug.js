@@ -354,7 +354,7 @@ export default function Archviz() {
             currentVideoType={currentVideoType}
           />
         )}
-        <PrefetchVideos videoUrls={videosToFetch} />
+        {/* <PrefetchVideos videoUrls={videosToFetch} /> */}
       </div>
     </>
   );
