@@ -52,7 +52,7 @@ export default function Archviz() {
   const [showThumb, setShowThumb] = useAtom(thumbAtom);
   const [videoDuration, setVideoDuration] = useState(null);
   const [showFg, setShowFg] = useState(true);
-  const [vdo_b, setVdo_b] = useState(video[0]);
+  const [vdo_b, setVdo_b] = useState(video[1]);
   // const [vdo, setVdo] = useState(vdo_b);
   const [vdo, setVdo] = useAtom(vdoAtom);
   const vdo_bRef = useRef(null);
@@ -215,19 +215,20 @@ export default function Archviz() {
     }
   }, [vdo, transitionRunning]);
 
-  // const handlePause = (e) => {
-  //   // e.currentTime = 10;
-  //   e.pause();
-  // };
+  const handlePause = (e) => {
+    e.currentTime = 10;
+    e.pause();
+  };
 
-  // useEffect(() => {
-  //   handlePause(vdo_bRef.current);
-  // }, [vdo_b]);
+  useEffect(() => {
+    if(!vdo_b.loop)
+    handlePause(vdo_bRef.current);
+  }, [vdo_b]);
 
   const handleVideoStart = () => {
     setCurrentVideoType(vdo.type);
     setCurrentSub(vdo.sub);
-    if (currentSub) {
+    if (scene=='interior') {
       setVdo_b(vdo);
     }
     vdo.to != undefined ? setVdo_b(video[vdo.to]) : null;
@@ -314,10 +315,10 @@ export default function Archviz() {
               loop={vdo.loop}
               preload="metadata"
               controlsList="nodownload nofullscreen noremoteplayback"
-              x5-playsinline
+              x5-playsinline="true"
               playsInline
               disablePictureInPicture
-              webkit-playsinline
+              webkit-playsinline="true"
               onCanPlay={() => setShowFg(false)}
               // onPlay={handleVideoStart}
               // onCanPlayThrough={handleVideoStart}
@@ -333,13 +334,13 @@ export default function Archviz() {
               preload="auto"
               muted
               playsInline
-              webkit-playsinline
-              x5-playsinline
+              webkit-playsinline="true"
+              x5-playsinline="true"
               disablePictureInPicture
               key={2}
               className="w-full"
               src={vdo_b.path}
-              // autoPlay={true}
+              autoPlay={true}
               // loop={vdo_b.loop}
             ></video>
           </div>

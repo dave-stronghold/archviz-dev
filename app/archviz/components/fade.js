@@ -7,7 +7,7 @@ export default function Fade() {
   const [fade, setFade] = useAtom(FadeAtom);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => setFade(false), 400);
+    const timeoutId = setTimeout(() => setFade(false), 600);
     return () => clearTimeout(timeoutId);
   }, [fade]);
 
