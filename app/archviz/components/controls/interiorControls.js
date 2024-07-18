@@ -8,13 +8,21 @@ import {
   viewsAtom,
   thumbAtom,
   currentMenuAtom,
-  showWalkAtom
+  showWalkAtom,
 } from "@/data/atoms";
 import { motion, AnimatePresence } from "framer-motion";
 import interiorData from "@/data/scenes/interiorData.json";
 import Fade from "../fade";
 import { useEffect, useState } from "react";
-import { Camera, Cctv, Eye, Footprints, Telescope, Triangle, View } from "lucide-react";
+import {
+  Camera,
+  Cctv,
+  Eye,
+  Footprints,
+  Telescope,
+  Triangle,
+  View,
+} from "lucide-react";
 const video = interiorData.videos;
 const roomData = {
   lr: {
@@ -37,6 +45,13 @@ const roomData = {
     dimensions: "14' x 9'3/14''",
     facing: "SE",
   },
+};
+const viewData = {
+  lr: [17, 18, 19],
+  bd1: [8, 9, 10],
+  bd2: [11, 12, 13],
+  bd3: [14, 15, 16],
+  kit: [20, 21, 22],
 };
 
 const Dimensions = () => {
@@ -79,26 +94,16 @@ const Views = () => {
   const [sub] = useAtom(currentSubVideoAtom);
   const [vdo, setVdo] = useAtom(vdoAtom);
   const [fade, setFade] = useAtom(FadeAtom);
-  const[showWalk,setShowWalk]=useAtom(showWalkAtom)
-  const viewData = {
-    lr: [17, 18, 19],
-    bd1: [8, 9, 10],
-    bd2: [11, 12, 13],
-    bd3: [14, 15, 16],
-    kit: [20, 21, 22],
-  };
+  const [showWalk, setShowWalk] = useAtom(showWalkAtom);
 
   const handleA = () => {
-    setShowWalk(!showWalk)
-      if (vdo.id == viewData[sub][0]) {
-       
+    setShowWalk(!showWalk);
+    if (vdo.id == viewData[sub][0]) {
       return;
     } else {
       setFade(true);
       setVdo(video[viewData[sub][0]]);
-    
     }
-   
   };
 
   const handleB = () => {
@@ -144,10 +149,17 @@ const Views = () => {
                 setShowViews(!showViews);
                 handleA();
               }}
-              className={`bg-black/80 p-2 rounded-[12px]  ${showWalk ? 'text-gray-300 hover:text-gray-50' : 'text-orange-500  bg-black ring-2 ring-orange-500'}`}
-
+              className={`bg-black/80 p-2 rounded-[12px]  ${
+                showWalk
+                  ? "text-gray-300 hover:text-gray-50"
+                  : "text-orange-500  bg-black ring-2 ring-orange-500"
+              }`}
             >
-            {showWalk?<Telescope strokeWidth={1.2}/>:<Footprints fill="#f97316"strokeWidth={1.5} stroke="black"/>}
+              {showWalk ? (
+                <Telescope strokeWidth={1.2} />
+              ) : (
+                <Footprints fill="#f97316" strokeWidth={1.5} stroke="black" />
+              )}
             </div>
           </motion.div>
         )}
@@ -222,15 +234,13 @@ export default function InteriorControls() {
   const defaultClass = `bg-black/60 cursor-fancy rounded-[14px] text-[14px] px-4 py-2 hover:text-gray-50 `;
   const activeClass = `bg-black cursor-fancy rounded-[14px] px-4 text-[14px] py-2 text-gray-50 font-semibold`;
 
-  useEffect(()=>{
-    console.log('rendered interior controls')
-  },[])
+  useEffect(() => {
+    console.log("rendered interior controls");
+  }, []);
 
   return (
     <>
-      <div key="asd">
-        {/* <Fade /> */}
-      </div>
+      <div key="asd">{/* <Fade /> */}</div>
       <AnimatePresence>
         {!transitionRunning && currentVideoType != "hero-loop" && (
           <motion.div
@@ -245,9 +255,10 @@ export default function InteriorControls() {
                 key={rooms[0]}
                 className={sub == "lr" ? activeClass : defaultClass}
                 onClick={() => {
-                  
-                  setFade(true);
-                  setVdo(video[17]);
+                  if (vdo.id != 17) {
+                    setFade(true);
+                    setVdo(video[17]);
+                  }
                 }}
               >
                 {rooms[0]}
@@ -256,9 +267,10 @@ export default function InteriorControls() {
                 key={rooms[1]}
                 className={sub == "bd1" ? activeClass : defaultClass}
                 onClick={() => {
-                    
-                  setFade(true);
-                  setVdo(video[8]);
+                  if (vdo.id != 8) {
+                    setFade(true);
+                    setVdo(video[8]);
+                  }
                 }}
               >
                 {rooms[1]}
@@ -267,10 +279,10 @@ export default function InteriorControls() {
                 key={rooms[2]}
                 className={sub == "bd2" ? activeClass : defaultClass}
                 onClick={() => {
-                  
-
-                  setFade(true);
-                  setVdo(video[11]);
+                  if (vdo.id != 11) {
+                    setFade(true);
+                    setVdo(video[11]);
+                  }
                 }}
               >
                 {rooms[2]}
@@ -279,10 +291,9 @@ export default function InteriorControls() {
                 key={rooms[3]}
                 className={sub == "kit" ? activeClass : defaultClass}
                 onClick={() => {
-                    
-
+                  if (vdo.id != 20) {
                   setFade(true);
-                  setVdo(video[20]);
+                  setVdo(video[20]);}
                 }}
               >
                 {rooms[3]}
@@ -291,10 +302,9 @@ export default function InteriorControls() {
                 key={rooms[4]}
                 className={sub == "bd3" ? activeClass : defaultClass}
                 onClick={() => {
-                    
-
+                  if (vdo.id != 14) {
                   setFade(true);
-                  setVdo(video[14]);
+                  setVdo(video[14]);}
                 }}
               >
                 {rooms[4]}
