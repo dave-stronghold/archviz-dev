@@ -45,7 +45,7 @@ export default function Archviz() {
   // const [fade, setFade] = useAtom(FadeAtom);
   const [scene] = useAtom(sceneAtom);
   const [video, setVideo] = useState(carouselData.videos);
-  const[debug,setDebug]=useState(false)
+  const [debug, setDebug] = useState(false);
 
   // const [actions, setActions] = useState(null);
   const [actions, setActions] = useState(carouselData.actions);
@@ -215,19 +215,25 @@ export default function Archviz() {
     }
   }, [vdo, transitionRunning]);
 
-  const handlePause = (e) => {
-    e.currentTime = 10;
-    e.pause();
-  };
+  // const handlePause = (e) => {
+  //   // e.currentTime = 10;
+  //   e.pause();
+  // };
 
-  useEffect(() => {
-    handlePause(vdo_bRef.current);
-  }, [vdo_b]);
+  // useEffect(() => {
+  //   handlePause(vdo_bRef.current);
+  // }, [vdo_b]);
 
   const handleVideoStart = () => {
     setCurrentVideoType(vdo.type);
     setCurrentSub(vdo.sub);
-    setVdo_b(vdo);
+    if (currentSub) {
+      setVdo_b(vdo);
+    }
+    vdo.to != undefined ? setVdo_b(video[vdo.to]) : null;
+    vdo.toIso1 != undefined ? setVdo_b(defaultVideo[1]) : null;
+    vdo.toIso2 != undefined ? setVdo_b(defaultVideo[2]) : null;
+    vdo.toDefault != undefined ? setVdo_b(defaultVideo[0]) : null;
   };
 
   const handleVideoEnd = () => {
@@ -274,7 +280,12 @@ export default function Archviz() {
           )}
         </button>
         {interfaceUI && <Interface />}
-        <button className="fixed z-[21] bg-yellow-600" onClick={()=>setDebug(prev => !prev)}>{debug?'View Realtime':'View Debug'}</button>
+        <button
+          className="fixed z-[21] bg-yellow-600"
+          onClick={() => setDebug((prev) => !prev)}
+        >
+          {debug ? "View Realtime" : "View Debug"}
+        </button>
 
         <div className="relative w-screen  h-screen overflow-y-hidden">
           {showFg && (
@@ -329,7 +340,7 @@ export default function Archviz() {
               className="w-full"
               src={vdo_b.path}
               autoPlay={true}
-              // loop={vdo_b.loop}
+              loop={vdo_b.loop}
             ></video>
           </div>
         </div>
