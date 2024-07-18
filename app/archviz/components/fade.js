@@ -1,15 +1,22 @@
 import React, { useEffect } from "react";
-import { FadeAtom } from "@/data/atoms";
+import { FadeAtom, readyToFadeAtom } from "@/data/atoms";
 import { useAtom } from "jotai";
 import { motion, AnimatePresence } from "framer-motion";
 
 export default function Fade() {
   const [fade, setFade] = useAtom(FadeAtom);
-
+  const [canFade] = useAtom(readyToFadeAtom);
   useEffect(() => {
-    const timeoutId = setTimeout(() => setFade(false), 600);
-    return () => clearTimeout(timeoutId);
-  }, [fade]);
+    // const timeoutId = setTimeout(() => setFade(false), 600);
+    // return () => {
+    //   clearTimeout(timeoutId);
+      
+    // };
+    if(canFade){
+      setFade(false)
+    }
+
+  }, [canFade,setFade]);
 
   return (
     <AnimatePresence>

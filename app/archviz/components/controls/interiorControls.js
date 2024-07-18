@@ -60,7 +60,7 @@ const Dimensions = () => {
             transition={{
               easings: "easeInOut",
             }}
-            className="absolute z-10 bottom-0 right-4 text-gray-50 rounded-[16px] font-semibold rounded-b-none px-4 py-2 bg-black/80 "
+            className="absolute z-10 bottom-0 right-4 text-gray-50 rounded-[16px] text-[14px] rounded-b-none px-4 py-2 bg-black/80 "
           >
             AREA : {roomData[sub]?.dimensions}
           </motion.div>
@@ -238,67 +238,67 @@ export default function InteriorControls() {
             animate={{ y: 0, x: "-50%" }}
             exit={{ y: -200, x: "-50%" }}
             transition={{ easings: "easeInOut" }}
-            className="absolute z-10 top-2 left-1/2 w-full -translate-x-1/2"
+            className="absolute z-10 top-2 left-1/2 w-full -translate-x-1/2 "
           >
             <div className="p-4 flex text-gray-300 justify-center gap-3 ">
-              <button
+              <div
                 key={rooms[0]}
                 className={sub == "lr" ? activeClass : defaultClass}
                 onClick={() => {
-                    console.log("clicked");
+                  
                   setFade(true);
                   setVdo(video[17]);
                 }}
               >
                 {rooms[0]}
-              </button>
-              <button
+              </div>
+              <div
                 key={rooms[1]}
                 className={sub == "bd1" ? activeClass : defaultClass}
                 onClick={() => {
-                    console.log("clicked");
+                    
                   setFade(true);
                   setVdo(video[8]);
                 }}
               >
                 {rooms[1]}
-              </button>
-              <button
+              </div>
+              <div
                 key={rooms[2]}
                 className={sub == "bd2" ? activeClass : defaultClass}
                 onClick={() => {
-                    console.log("clicked");
+                  
 
                   setFade(true);
                   setVdo(video[11]);
                 }}
               >
                 {rooms[2]}
-              </button>
-              <button
+              </div>
+              <div
                 key={rooms[3]}
                 className={sub == "kit" ? activeClass : defaultClass}
                 onClick={() => {
-                    console.log("clicked");
+                    
 
                   setFade(true);
                   setVdo(video[20]);
                 }}
               >
                 {rooms[3]}
-              </button>
-              <button
+              </div>
+              <div
                 key={rooms[4]}
                 className={sub == "bd3" ? activeClass : defaultClass}
                 onClick={() => {
-                    console.log("clicked");
+                    
 
                   setFade(true);
                   setVdo(video[14]);
                 }}
               >
                 {rooms[4]}
-              </button>
+              </div>
             </div>
           </motion.div>
         )}

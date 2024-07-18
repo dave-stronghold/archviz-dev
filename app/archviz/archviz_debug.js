@@ -3,6 +3,7 @@ import Image from "next/image";
 import { useState, useEffect, useRef } from "react";
 import { useAtom } from "jotai";
 import { AnimatePresence, motion } from "framer-motion";
+import screenfull from 'screenfull';
 // import carouselData from "@/data/scenes/carouselData";
 import carouselData from "@/data/scenes/testCarouselData";
 import PrefetchVideos from "./PrefetchVideos";
@@ -27,6 +28,7 @@ import {
   currentSubVideoAtom,
   vdoAtom,
   currentVideoLoadedAtom,
+  readyToFadeAtom,
 } from "@/data/atoms";
 
 const defaultVideo = defaultData.videos;
@@ -37,7 +39,7 @@ import carouselUrls from "../../data/scenes/carousel_prefetchers.json";
 import videoUrls from "../../data/scenes/complete_prefetchers.json";
 import Thumbnails from "./components/thumbnails";
 import Interface from "./components/interface";
-import { ArrowBigLeft, ArrowBigRight, Eye, EyeOff } from "lucide-react";
+import { Eye, EyeOff, Fullscreen, Shrink } from "lucide-react";
 import Fade from "./components/fade";
 const videosToFetch = videoUrls.videoUrls;
 
@@ -67,7 +69,10 @@ export default function Archviz() {
   const [interiorSignal, setInteriorSignal] = useAtom(interiorSignalAtom);
   const [currentMenu, setCurrentMenu] = useAtom(currentMenuAtom);
   const [interfaceUI, setInterfaceUI] = useState(true);
+  const [fullscreen, setFullScreen] = useState(false);
   const [currentVideoLoaded, setLoaded] = useAtom(currentVideoLoadedAtom);
+  const[canFade,setCanFade]=useAtom(readyToFadeAtom)
+  const containerRef=useRef(null)
   // useEffect(() => {
   //   if (vdo?.type) {
   //     setCurrentVideoType(vdo.type);
@@ -221,6 +226,7 @@ export default function Archviz() {
   };
 
   useEffect(() => {
+    setCanFade(false)
     if(!vdo_b.loop)
     handlePause(vdo_bRef.current);
   }, [vdo_b]);
@@ -258,11 +264,18 @@ export default function Archviz() {
       console.log("executing to");
     }
   };
+  
+  const handleFullscreen = () => {
+    if (screenfull.isEnabled) {
+      screenfull.toggle(containerRef.current);
+    }
+    setFullScreen(prev=>!prev);
+  };
 
   return (
     <>
       <PrefetchVideos videoUrls={carouselUrls.carouselUrls} />
-      <div className="relative cursor-fancy overflow-hidden">
+      <div ref={containerRef} className="relative cursor-fancy overflow-hidden">
         {/* <div>{vdo.path}</div> */}
         {/* <div>{currentVideoLoaded.toString()}</div> */}
         <Fade />
@@ -270,37 +283,47 @@ export default function Archviz() {
           {currentVideoType?currentVideoType:"undefined"}
           {vdo.path}
         </div> */}
+        {/* {console.log(canFade)} */}
+        <button  onClick={handleFullscreen} className="fixed z-[11] top-0 right-0 p-2 rounded-bl-[18px] text-gray-200  bg-black">
+        {!fullscreen ? (
+            <Fullscreen strokeWidth={1.2} size={23} />
+          ) : (
+            <Shrink strokeWidth={1.2} size={23} />
+          )}
+      </button>
         <button
           className="fixed z-[11] bottom-0 left-0 p-2 rounded-tr-[18px] text-gray-200  bg-black"
           onClick={() => setInterfaceUI(!interfaceUI)}
         >
           {interfaceUI ? (
-            <EyeOff strokeWidth={1.2} size={22} />
+            <EyeOff strokeWidth={1.2} size={23} />
           ) : (
-            <Eye strokeWidth={1.2} size={22} />
+            <Eye strokeWidth={1.2} size={23} />
           )}
         </button>
         {interfaceUI && <Interface />}
-        <button
+       
+        {/* <button
           className="fixed z-[21] bg-yellow-600"
           onClick={() => setDebug((prev) => !prev)}
         >
           {debug ? "View Realtime" : "View Debug"}
-        </button>
+        </button> */}
+        {/* <div className="fixed z-[11]">{canFade.toString()}</div> */}
 
         <div className="relative w-screen  h-screen overflow-y-hidden">
-          {showFg && (
+          {/* {showFg && (
             <>
-              {/* <Image
+              <Image
               className="absolute hidden w-full"
               priority={true}
               src="/bg2.webp"
               width={1920}
               height={1080}
               alt="background"
-              /> */}
+              />
             </>
-          )}
+          )} */}
           <div
             className={`aspect-video ${debug ? " h-1/2" : "absolute w-full"}`}
           >
@@ -339,6 +362,8 @@ export default function Archviz() {
               webkit-playsinline="true"
               x5-playsinline="true"
               disablePictureInPicture
+              onPlaying={()=>setCanFade(true)}
+              onLoadedData={()=>setCanFade(false)}
               key={2}
               className="w-full"
               src={vdo_b.path}
