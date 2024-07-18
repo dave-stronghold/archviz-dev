@@ -7,7 +7,7 @@ export default function Fade() {
   const [fade, setFade] = useAtom(FadeAtom);
 
   useEffect(() => {
-    const timeoutId = setTimeout(() => setFade(false), 100);
+    const timeoutId = setTimeout(() => setFade(false), 400);
     return () => clearTimeout(timeoutId);
   }, [fade]);
 
@@ -16,9 +16,9 @@ export default function Fade() {
       {fade && (
         <motion.div
           initial={{ opacity: 1 }}
-          // animate={{ opacity: 0 }}
+          // animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 0.5, ease: "easeOut" }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
           className="absolute top-0 left-0 w-full h-full bg-black z-50"
         />
       )}

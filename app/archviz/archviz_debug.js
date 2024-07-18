@@ -34,7 +34,7 @@ const defaultVideo = defaultData.videos;
 // const video = carouselData.videos;
 // const actions = swimmingData.actions;
 import carouselUrls from "../../data/scenes/carousel_prefetchers.json";
-import videoUrls from "../../data/scenes/swimming_pool_prefetchers.json";
+import videoUrls from "../../data/scenes/complete_prefetchers.json";
 import Thumbnails from "./components/thumbnails";
 import Interface from "./components/interface";
 import { ArrowBigLeft, ArrowBigRight, Eye, EyeOff } from "lucide-react";
@@ -339,8 +339,8 @@ export default function Archviz() {
               key={2}
               className="w-full"
               src={vdo_b.path}
-              autoPlay={true}
-              loop={vdo_b.loop}
+              // autoPlay={true}
+              // loop={vdo_b.loop}
             ></video>
           </div>
         </div>
