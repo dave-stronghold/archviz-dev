@@ -311,6 +311,7 @@ export default function Archviz() {
               poster="image"
               className="w-full"
               src={vdo.path}
+              type="video/mp4"
               autoPlay={true}
               loop={vdo.loop}
               preload="metadata"
@@ -333,6 +334,7 @@ export default function Archviz() {
               controlsList="nodownload nofullscreen noremoteplayback"
               preload="auto"
               muted
+              type="video/mp4"
               playsInline
               webkit-playsinline="true"
               x5-playsinline="true"
