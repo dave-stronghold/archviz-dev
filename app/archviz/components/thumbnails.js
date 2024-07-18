@@ -17,7 +17,7 @@ import {
   currentMenuAtom,
   showWalkAtom,
 } from "@/data/atoms";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
+// import { Player, Controls } from "@lottiefiles/react-lottie-player";
 
 const Lottie = () => {
   return (
@@ -53,7 +53,9 @@ export default function Thumbnails({
   return (
     <>
       {/* <div className="absolute bottom-14 bg-yellow-200 text-black">{currentVideoType}</div> */}
-      <div className={`${interfaceUI?'scale-[0.65] lg:scale-100':'hidden'}`}>
+      <div
+        className={`${interfaceUI ? "scale-[0.65] lg:scale-100" : "hidden"}`}
+      >
         <AnimatePresence>
           {!transitionRunning && actions.tour && showTour && (
             <motion.div
@@ -83,7 +85,9 @@ export default function Thumbnails({
               >
                 <Camera size={18} /> Guided Tour
               </div>
-              <div className="absolute -z-10 bottom-0"><Lottie /></div>
+              <div className="absolute -z-10 bottom-0">
+                {/* <Lottie /> */}
+              </div>
             </motion.div>
           )}
         </AnimatePresence>

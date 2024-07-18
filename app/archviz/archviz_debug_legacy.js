@@ -45,8 +45,6 @@ export default function Archviz() {
   // const [fade, setFade] = useAtom(FadeAtom);
   const [scene] = useAtom(sceneAtom);
   const [video, setVideo] = useState(carouselData.videos);
-  const[debug,setDebug]=useState(false)
-
   // const [actions, setActions] = useState(null);
   const [actions, setActions] = useState(carouselData.actions);
   const [showThumb, setShowThumb] = useAtom(thumbAtom);
@@ -55,6 +53,7 @@ export default function Archviz() {
   const [vdo_b, setVdo_b] = useState(video[0]);
   // const [vdo, setVdo] = useState(vdo_b);
   const [vdo, setVdo] = useAtom(vdoAtom);
+  const fgvideo = useRef(null);
   const vdo_bRef = useRef(null);
   const [currentVideoType, setCurrentVideoType] = useAtom(currentVideoAtom);
   const [currentSub, setCurrentSub] = useAtom(currentSubVideoAtom);
@@ -213,6 +212,17 @@ export default function Archviz() {
     } else {
       setTransitionRunning(true);
     }
+
+    const videoElement = fgvideo.current;
+    const handleLoadedData = () => {
+      setLoaded(!currentVideoLoaded);
+      console.log(currentVideoLoaded)
+    };
+    videoElement.addEventListener("loadeddata", handleLoadedData);
+    return () => {
+      videoElement.removeEventListener("loadeddata", handleLoadedData);
+      console.log('cleared')
+    };
   }, [vdo, transitionRunning]);
 
   const handlePause = (e) => {
@@ -252,6 +262,9 @@ export default function Archviz() {
     }
   };
 
+  useEffect(() => {}, [showFg]);
+  // useEffect(() => {}, [fade]);
+
   return (
     <>
       <PrefetchVideos videoUrls={carouselUrls.carouselUrls} />
@@ -274,7 +287,6 @@ export default function Archviz() {
           )}
         </button>
         {interfaceUI && <Interface />}
-        <button className="fixed z-[21] bg-yellow-600" onClick={()=>setDebug(prev => !prev)}>{debug?'View Realtime':'View Debug'}</button>
 
         <div className="relative w-screen  h-screen overflow-y-hidden">
           {showFg && (
@@ -289,12 +301,11 @@ export default function Archviz() {
               /> */}
             </>
           )}
-          <div
-            className={`aspect-video ${debug ? " h-1/2" : "absolute w-full"}`}
-          >
-            {/* <div className="absolute  w-full  aspect-video "> */}
+
+          <div className="absolute  w-full  aspect-video ">
             <video
               muted
+              ref={fgvideo}
               key={1}
               poster="image"
               className="w-full"
@@ -314,8 +325,7 @@ export default function Archviz() {
               onEnded={handleVideoEnd}
             ></video>
           </div>
-          {/* <div className=" w-full aspect-video"> */}
-          <div className={`aspect-video ${debug ? "h-1/2" : "w-full"}`}>
+          <div className=" w-full aspect-video">
             <video
               ref={vdo_bRef}
               controlsList="nodownload nofullscreen noremoteplayback"
@@ -329,7 +339,7 @@ export default function Archviz() {
               className="w-full"
               src={vdo_b.path}
               autoPlay={true}
-              // loop={vdo_b.loop}
+              loop={vdo_b.loop}
             ></video>
           </div>
         </div>

@@ -1,5 +1,5 @@
 import { Info } from "lucide-react";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
+// import { Player, Controls } from "@lottiefiles/react-lottie-player";
 const Lottie = () => {
   return (
     <Player
@@ -17,7 +17,7 @@ const PortraitComponent = () => {
         <div className="w-full max-w-md p-4 rounded-lg shadow-lg  ">
           {/* <Info size={32} className="mx-auto" /> */}
         </div>
-       <Lottie />
+       {/* <Lottie /> */}
         <h1 className="text-2xl font-semibold ">Portrait Mode</h1>
         <p className="m-4 ">
           Please rotate your device to landscape mode to view the Architectural
