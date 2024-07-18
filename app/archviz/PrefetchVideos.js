@@ -34,9 +34,8 @@ const PrefetchVideos = ({ videoUrls }) => {
   }, [videoUrls]);
 
   return (
-    <>
-      {/* <div>Videos are being prefetched...</div> */}
-    </>
+    <div className="hidden">
+    </div>
   );
 };
 

@@ -311,7 +311,7 @@ export default function Archviz() {
         </button> */}
         {/* <div className="fixed z-[11]">{canFade.toString()}</div> */}
 
-        <div className="relative w-screen  h-dvh overflow-y-hidden">
+        <div className="relative w-screen  h-screen overflow-y-hidden">
           {/* {showFg && (
             <>
               <Image
@@ -325,14 +325,14 @@ export default function Archviz() {
             </>
           )} */}
           <div
-            className={`h-full ${debug ? " h-1/2" : "absolute w-full"}`}
+            className={`aspect-video ${debug ? " h-1/2" : "absolute w-full"}`}
           >
+            {/* <div className="absolute  w-full  aspect-video "> */}
             <video
               muted
               key={1}
               poster="image"
-              // className='w-full'
-              className="h-full w-full object-cover"
+              className="w-full"
               src={vdo.path}
               type="video/mp4"
               autoPlay={true}
@@ -350,8 +350,8 @@ export default function Archviz() {
               onEnded={handleVideoEnd}
             ></video>
           </div>
-          
-          <div className={`h-full ${debug ? "h-1/2" : "w-full"}`}>
+          {/* <div className=" w-full aspect-video"> */}
+          <div className={`aspect-video ${debug ? "h-1/2" : "w-full"}`}>
             <video
               ref={vdo_bRef}
               controlsList="nodownload nofullscreen noremoteplayback"
@@ -365,9 +365,7 @@ export default function Archviz() {
               onPlaying={()=>setCanFade(true)}
               onLoadedData={()=>setCanFade(false)}
               key={2}
-              className="h-full w-full object-cover"
-
-              // className="w-full"
+              className="w-full"
               src={vdo_b.path}
               autoPlay={true}
               // loop={vdo_b.loop}
