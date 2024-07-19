@@ -267,7 +267,7 @@ export default function Archviz() {
   
   const handleFullscreen = () => {
     if (screenfull.isEnabled) {
-      screenfull.toggle(containerRef.current);
+      screenfull.toggle(containerRef.current,{navigationUI:'hide'});
     }
     setFullScreen(prev=>!prev);
   };

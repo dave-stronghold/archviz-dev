@@ -94,12 +94,12 @@ export default function Thumbnails({
         <AnimatePresence>
           {!transitionRunning && (
             <motion.div
-              initial={{ y: 100 }}
+              initial={{ y: 150 }}
               animate={{ y: 0 }}
-              exit={{ y: 100 }}
+              exit={{ y: 150 }}
               transition={{ easings: "easeIn" }}
             >
-              <div className="absolute bottom-0  flex left-1/2 -translate-x-1/2 justify-center items-center gap-4 bg-black/80 rounded-[24px] rounded-b-none px-5 py-4">
+              <div className="absolute bottom-4  flex left-1/2 -translate-x-1/2 justify-center items-center gap-4 bg-black/80 rounded-[24px] lg:rounded-b-none lg:bottom-0  px-5 py-4">
                 <div
                   className="text-gray-300 hover:text-lg bg-black p-2 rounded-full hover:bg-orange-600 hover:text-black"
                   onClick={() => {

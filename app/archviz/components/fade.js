@@ -10,13 +10,12 @@ export default function Fade() {
     // const timeoutId = setTimeout(() => setFade(false), 600);
     // return () => {
     //   clearTimeout(timeoutId);
-      
-    // };
-    if(canFade){
-      setFade(false)
-    }
 
-  }, [canFade,setFade]);
+    // };
+    if (canFade) {
+      setFade(false);
+    }
+  }, [canFade, setFade]);
 
   return (
     <AnimatePresence>
@@ -25,7 +24,7 @@ export default function Fade() {
           initial={{ opacity: 1 }}
           // animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          transition={{ duration: 0.5, ease: "easeOut" }}
           className="absolute top-0 left-0 w-full h-full bg-black z-50"
         />
       )}

@@ -250,7 +250,7 @@ export default function InteriorControls() {
             transition={{ easings: "easeInOut" }}
             className="absolute z-10 top-2 left-1/2 w-full -translate-x-1/2 "
           >
-            <div className="p-4 flex text-gray-300 justify-center gap-3 ">
+            <div translate="no" className="p-4 flex text-gray-300 justify-center gap-3 ">
               <div
                 key={rooms[0]}
                 className={sub == "lr" ? activeClass : defaultClass}

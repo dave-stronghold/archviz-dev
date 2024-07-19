@@ -58,7 +58,7 @@ export const UnitsSubmenu = () => {
           exit={{ opacity: 0, y: -10 }}
         > */}
           <div className="py-8 px-6  bg-black/80 backdrop-blur-sm text-gray-400 text-sm rounded-fancy ml-5 flex flex-col gap-4 ">
-            <div
+            <div  
               className={`hover:text-gray-50 ${
                 active == "back" && "text-gray-50"
               }`}
@@ -66,7 +66,7 @@ export const UnitsSubmenu = () => {
             >
               <ArrowLeftCircle size={20} />
             </div>
-            <div
+            <div translate="no" 
               className={`hover:text-gray-50 ${
                 active == "back" && "text-gray-50"
               }`}
@@ -74,7 +74,7 @@ export const UnitsSubmenu = () => {
             >
               Unit 901
             </div>
-            <div
+            <div translate="no"
               className={`hover:text-gray-50 ${
                 active == "back" && "text-gray-50"
               }`}

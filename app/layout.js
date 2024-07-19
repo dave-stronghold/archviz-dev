@@ -10,7 +10,7 @@ export const metadata = {
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="en">
+    <html translate="no">
       <body className={urbanist.className}>{children}</body>
     </html>
   );
