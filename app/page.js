@@ -1,6 +1,7 @@
 "use client";
 import { useEffect, useState } from "react";
-import Archviz from "./archviz/archviz_debug";
+// import Archviz from "./archviz/archviz_debug";
+import Archviz from "./archviz/archviz_debug_fit";
 import PortraitComponent from "./PortraitComponente"; // Import the portrait component
 import Fade from "./archviz/components/fade";
 

@@ -303,12 +303,12 @@ export default function Archviz() {
         </button>
         {interfaceUI && <Interface />}
        
-        {/* <button
+        <button
           className="fixed z-[21] bg-yellow-600"
           onClick={() => setDebug((prev) => !prev)}
         >
           {debug ? "View Realtime" : "View Debug"}
-        </button> */}
+        </button>
         {/* <div className="fixed z-[11]">{canFade.toString()}</div> */}
 
         <div className="relative w-screen  h-screen overflow-y-hidden">
