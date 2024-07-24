@@ -99,7 +99,7 @@ export default function Thumbnails({
               exit={{ y: 150 }}
               transition={{ easings: "easeIn" }}
             >
-              <div className="absolute bottom-4  flex left-1/2 -translate-x-1/2 justify-center items-center gap-4 bg-black/80 rounded-[24px] lg:rounded-b-none lg:bottom-0  px-5 py-4">
+              <div className="absolute bottom-4  flex left-1/2 -translate-x-1/2 justify-center items-center gap-0 bg-black/80 rounded-[24px] lg:rounded-b-none lg:bottom-0  px-5 py-4">
                 <div
                   className="text-gray-300 hover:text-lg bg-black p-2 rounded-full hover:bg-orange-600 hover:text-black"
                   onClick={() => {
@@ -133,7 +133,7 @@ export default function Thumbnails({
                           onClick={() => {
                             handleAction(action);
                           }}
-                          className="text-gray-200 rounded-[12px] p-2 bg-black hover:bg-orange-500 hover:text-black"
+                          className="text-gray-200 rounded-[12px] p-2 ml-4 bg-black hover:bg-orange-500 hover:text-black"
                         >
                           <ChevronLeft />
                         </div>
@@ -144,7 +144,7 @@ export default function Thumbnails({
                             handleAction(action);
                           }}
                           // className={`${showWalk?"text-gray-200 rounded-[12px] p-2 bg-black hover:bg-orange-500 hover:text-black":"hidden"}`}
-                          className="text-gray-200 rounded-[12px] p-2 bg-black hover:bg-orange-500 hover:text-black"
+                          className="text-gray-200 rounded-[12px] p-2 ml-4 bg-black hover:bg-orange-500 hover:text-black"
                         >
                           <ChevronRight />
                         </div>
@@ -155,7 +155,7 @@ export default function Thumbnails({
                             handleAction(action);
                           }}
                           // className={`${showWalk?"text-gray-200 rounded-[12px] p-2 bg-black hover:bg-orange-500 hover:text-black":"hidden"}`}
-                          className="text-gray-200 rounded-[12px] p-2 bg-black hover:bg-orange-500 hover:text-black"
+                          className="text-gray-200 rounded-[12px] p-2 ml-4 bg-black hover:bg-orange-500 hover:text-black"
                         >
                           <Footprints size={28} strokeWidth={1.2} />
                         </div>
@@ -176,7 +176,7 @@ export default function Thumbnails({
                             }
                           }}
                           src={action.path}
-                          className={`h-14 rounded-md hover:scale-110 shadow-lg shadow-black/30 transition-transform ${
+                          className={`h-14 rounded-md hover:scale-110 shadow-lg ml-4 shadow-black/30 transition-transform ${
                             isSelected ? "ring-2 ring-white/80" : ""
                           }`}
                           alt=""

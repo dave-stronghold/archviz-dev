@@ -21,7 +21,7 @@ const PrefetchVideos = ({ videoUrls }) => {
         })
         .then((blob) => {
           const url = window.URL.createObjectURL(blob);
-          console.log(`Prefetched and cached: ${url}`);
+          // console.log(`Prefetched and cached: ${url}`);
           // Optionally revoke the object URL if you don't need it
           // window.URL.revokeObjectURL(url);
         })

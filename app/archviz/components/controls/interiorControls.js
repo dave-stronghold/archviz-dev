@@ -149,7 +149,7 @@ const Views = () => {
                 setShowViews(!showViews);
                 handleA();
               }}
-              className={`bg-black/80 p-2 rounded-[12px]  ${
+              className={`bg-black p-2 rounded-[12px]  ${
                 showWalk
                   ? "text-gray-300 hover:text-gray-50"
                   : "text-orange-500  bg-black ring-2 ring-orange-500"
@@ -169,7 +169,7 @@ const Views = () => {
           <>
             <motion.div
               key="1"
-              className="absolute z-10 top-1/2 left-4 -translate-y-1/2 bg-black/80 p-2 rounded-[12px] text-gray-300 hover:text-gray-50 "
+              className="absolute z-10 top-1/2 left-4 -translate-y-1/2 bg-black p-2 rounded-[12px] text-gray-300 hover:text-gray-50 "
               initial={{
                 x: 0,
                 y: 0,
@@ -191,7 +191,7 @@ const Views = () => {
             </motion.div>
             <motion.div
               key="2"
-              className="absolute z-10 top-1/2 left-4 -translate-y-1/2 bg-black/80 p-2 rounded-[12px] text-gray-300 hover:text-gray-50 "
+              className="absolute z-10 top-1/2 left-4 -translate-y-1/2 bg-black p-2 rounded-[12px] text-gray-300 hover:text-gray-50 "
               initial={{
                 x: 0,
                 y: 0,
@@ -231,7 +231,7 @@ export default function InteriorControls() {
     "Kitchen",
     "Bed Room 3",
   ];
-  const defaultClass = `bg-black/60 cursor-fancy rounded-[14px] text-[14px] px-4 py-2 hover:text-gray-50 `;
+  const defaultClass = `bg-black/85 font-medium cursor-fancy text-gray-200 rounded-[14px] text-[14px] px-4 py-2 hover:text-gray-50 `;
   const activeClass = `bg-black cursor-fancy rounded-[14px] px-4 text-[14px] py-2 text-gray-50 font-semibold`;
 
   useEffect(() => {
