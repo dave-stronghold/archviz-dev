@@ -235,7 +235,7 @@ export default function Archviz() {
   
   let rafHandle =useRef( null);
   let frameCount = 0;
-  const skipFrames = 450; // Number of frames to skip
+  const skipFrames = 30; // Number of frames to skip
 
   useEffect(() => {
     const video = videoRef.current;
@@ -275,14 +275,14 @@ export default function Archviz() {
       drawFrame();
     };
 
-    // video.addEventListener("play", handleVideoPlay);
+    video.addEventListener("play", handleVideoPlay);
     video.addEventListener("ended", handleVideoEnd);
-    video.addEventListener("play", handleVideoEnd);
+    // video.addEventListener("play", handleVideoEnd);
     // Clean up when component unmounts or video source changes
     return () => {
-      // video.removeEventListener("play", handleVideoPlay);
+      video.removeEventListener("play", handleVideoPlay);
       video.removeEventListener("ended", handleVideoEnd);
-      video.addEventListener("play", handleVideoEnd);
+      // video.addEventListener("play", handleVideoEnd);
       cancelAnimationFrame(rafHandle.current);
     };
   }, [vdo]);
@@ -324,7 +324,7 @@ export default function Archviz() {
         {interfaceUI && <Interface />}
 
         {debugButton && (
-          <button
+          <button translate="no"
             className="fixed z-[21] bg-yellow-600"
             onClick={() => setDebug((prev) => !prev)}
           >
