@@ -235,7 +235,7 @@ export default function Archviz() {
   
   let rafHandle =useRef( null);
   let frameCount = 0;
-  const skipFrames = 45; // Number of frames to skip
+  const skipFrames = 450; // Number of frames to skip
 
   useEffect(() => {
     const video = videoRef.current;
@@ -270,11 +270,11 @@ export default function Archviz() {
       }
       cancelAnimationFrame(rafHandle.current);
     };
-    // video.addEventListener("play", handleVideoPlay);
+    video.addEventListener("play", handleVideoPlay);
     video.addEventListener("ended", handleVideoEnd);
     // Clean up when component unmounts or video source changes
     return () => {
-      // video.removeEventListener("play", handleVideoPlay);
+      video.removeEventListener("play", handleVideoPlay);
       video.removeEventListener("ended", handleVideoEnd);
       cancelAnimationFrame(rafHandle.current);
     };
