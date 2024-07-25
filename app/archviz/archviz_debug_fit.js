@@ -194,7 +194,7 @@ export default function Archviz() {
     setCurrentSub(vdo.sub);
   };
   const handleDelayedVideoEnd = () => {
-    setTimeout(handleVideoEnd, 70);
+    setTimeout(handleVideoEnd, 300);
   };
   const handleVideoEnd = () => {
     if (vdo.toDefault) {
@@ -373,8 +373,8 @@ export default function Archviz() {
 
               onLoadedData={() => setCanFade(false)}
               onPlaying={handlePlay}
-              onEnded={handleVideoEnd}
-              // onEnded={handleDelayedVideoEnd}
+              // onEnded={handleVideoEnd}
+              onEnded={handleDelayedVideoEnd}
             //   onEnded={async () => {
             //     await new Promise(resolve => setTimeout(resolve, 700));
             //     handleVideoEnd();
