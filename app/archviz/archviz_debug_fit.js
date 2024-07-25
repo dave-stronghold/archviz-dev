@@ -194,7 +194,7 @@ export default function Archviz() {
     setCurrentSub(vdo.sub);
   };
   const handleDelayedVideoEnd = () => {
-    setTimeout(handleVideoEnd, 300);
+    setTimeout(handleVideoEnd, 200);
   };
   const handleVideoEnd = () => {
     if (vdo.toDefault) {
