@@ -277,12 +277,12 @@ export default function Archviz() {
 
     // video.addEventListener("play", handleVideoPlay);
     video.addEventListener("ended", handleVideoEnd);
-    video.addEventListener("loadeddata", handleVideoEnd);
+    video.addEventListener("play", handleVideoEnd);
     // Clean up when component unmounts or video source changes
     return () => {
       // video.removeEventListener("play", handleVideoPlay);
       video.removeEventListener("ended", handleVideoEnd);
-      video.addEventListener("loadeddata", handleVideoEnd);
+      video.addEventListener("play", handleVideoEnd);
       cancelAnimationFrame(rafHandle.current);
     };
   }, [vdo]);
