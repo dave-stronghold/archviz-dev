@@ -44,7 +44,7 @@ export default function Archviz() {
   const [video, setVideo] = useState(carouselData.videos);
   const [debug, setDebug] = useState(false);
   const [play, setPlay] = useState(false);
-  const [debugButton] = useState(false);
+  const [debugButton] = useState(true);
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const [actions, setActions] = useState(carouselData.actions);
@@ -270,12 +270,19 @@ export default function Archviz() {
       }
       cancelAnimationFrame(rafHandle.current);
     };
-    video.addEventListener("play", handleVideoPlay);
+    const handleVideoLoadedData = () => {
+      // Draw the first frame when the video is loaded
+      drawFrame();
+    };
+
+    // video.addEventListener("play", handleVideoPlay);
     video.addEventListener("ended", handleVideoEnd);
+    video.addEventListener("loadeddata", handleVideoEnd);
     // Clean up when component unmounts or video source changes
     return () => {
-      video.removeEventListener("play", handleVideoPlay);
+      // video.removeEventListener("play", handleVideoPlay);
       video.removeEventListener("ended", handleVideoEnd);
+      video.addEventListener("loadeddata", handleVideoEnd);
       cancelAnimationFrame(rafHandle.current);
     };
   }, [vdo]);
