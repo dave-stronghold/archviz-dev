@@ -193,9 +193,7 @@ export default function Archviz() {
     setCanFade(true);
     setCurrentSub(vdo.sub);
   };
-  const handleDelayedVideoEnd = () => {
-    setTimeout(handleVideoEnd, 70);
-  };
+
   const handleVideoEnd = () => {
     if (vdo.toDefault) {
       setVdo(defaultVideo[0]);
@@ -232,51 +230,38 @@ export default function Archviz() {
     }
     setFullScreen((prev) => !prev);
   };
-  
-  let rafHandle =useRef( null);
-  let frameCount = 0;
-  const skipFrames = 45; // Number of frames to skip
-
   useEffect(() => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
     const context = canvas.getContext("2d");
 
-    const updateCanvas = () => {
-      frameCount++;
-      if (frameCount % skipFrames !== 0|| video.currentTime === video.duration) {
-        rafHandle.current = requestAnimationFrame(updateCanvas);
-        return;
-      }
+    let animationFrameId;
+    let lastRenderTime = Date.now();
+    const fps = 30; // Target frames per second
 
-      if (video.videoWidth && video.videoHeight) {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      }
+    const drawFrame = () => {
+      const now = Date.now();
+      const elapsed = now - lastRenderTime;
 
-      rafHandle.current = requestAnimationFrame(updateCanvas);
+      if (elapsed > 1000 / fps) {
+        lastRenderTime = now;
+
+        if (!video.paused && !video.ended) {
+          context.drawImage(video, 0, 0, canvas.width, canvas.height);
+        }
+      }
+      animationFrameId = requestAnimationFrame(drawFrame);
     };
 
-    const handleVideoPlay = () => {
-      rafHandle.current = requestAnimationFrame(updateCanvas);
-    };
-    const handleVideoEnd = () => {
-      // Ensure the last frame is drawn
-      if (video.videoWidth && video.videoHeight) {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      }
-      cancelAnimationFrame(rafHandle.current);
-    };
-    // video.addEventListener("play", handleVideoPlay);
-    video.addEventListener("ended", handleVideoEnd);
-    // Clean up when component unmounts or video source changes
+    video.addEventListener("playing", () => {
+      canvas.width = video.videoWidth;
+      canvas.height = video.videoHeight;
+      drawFrame();
+    });
+
     return () => {
-      // video.removeEventListener("play", handleVideoPlay);
-      video.removeEventListener("ended", handleVideoEnd);
-      cancelAnimationFrame(rafHandle.current);
+      video.removeEventListener("playing", drawFrame);
+      cancelAnimationFrame(animationFrameId);
     };
   }, [vdo]);
 
@@ -366,12 +351,11 @@ export default function Archviz() {
 
               onLoadedData={() => setCanFade(false)}
               onPlaying={handlePlay}
-              onEnded={handleVideoEnd}
-              // onEnded={handleDelayedVideoEnd}
-            //   onEnded={async () => {
-            //     await new Promise(resolve => setTimeout(resolve, 700));
-            //     handleVideoEnd();
-            // }}
+              // onEnded={handleVideoEnd}
+              onEnded={async () => {
+                await new Promise(resolve => setTimeout(resolve, 200));
+                handleVideoEnd();
+            }}
 
             ></video>
           </div>

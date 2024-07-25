@@ -42,9 +42,9 @@ const videosToFetch = videoUrls.videoUrls;
 export default function Archviz() {
   const [scene] = useAtom(sceneAtom);
   const [video, setVideo] = useState(carouselData.videos);
-  const [debug, setDebug] = useState(false);
+  const [debug, setDebug] = useState(true);
   const [play, setPlay] = useState(false);
-  const [debugButton] = useState(false);
+  const [debugButton] = useState(true);
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const [actions, setActions] = useState(carouselData.actions);
@@ -235,7 +235,7 @@ export default function Archviz() {
   
   let rafHandle =useRef( null);
   let frameCount = 0;
-  const skipFrames = 45; // Number of frames to skip
+  const skipFrames = 30; // Number of frames to skip
 
   useEffect(() => {
     const video = videoRef.current;
@@ -244,7 +244,7 @@ export default function Archviz() {
 
     const updateCanvas = () => {
       frameCount++;
-      if (frameCount % skipFrames !== 0|| video.currentTime === video.duration) {
+      if (frameCount % skipFrames !== 0) {
         rafHandle.current = requestAnimationFrame(updateCanvas);
         return;
       }
@@ -261,21 +261,12 @@ export default function Archviz() {
     const handleVideoPlay = () => {
       rafHandle.current = requestAnimationFrame(updateCanvas);
     };
-    const handleVideoEnd = () => {
-      // Ensure the last frame is drawn
-      if (video.videoWidth && video.videoHeight) {
-        canvas.width = video.videoWidth;
-        canvas.height = video.videoHeight;
-        context.drawImage(video, 0, 0, canvas.width, canvas.height);
-      }
-      cancelAnimationFrame(rafHandle.current);
-    };
-    // video.addEventListener("play", handleVideoPlay);
-    video.addEventListener("ended", handleVideoEnd);
+
+    video.addEventListener("play", handleVideoPlay);
+
     // Clean up when component unmounts or video source changes
     return () => {
-      // video.removeEventListener("play", handleVideoPlay);
-      video.removeEventListener("ended", handleVideoEnd);
+      video.removeEventListener("play", handleVideoPlay);
       cancelAnimationFrame(rafHandle.current);
     };
   }, [vdo]);
@@ -366,8 +357,8 @@ export default function Archviz() {
 
               onLoadedData={() => setCanFade(false)}
               onPlaying={handlePlay}
-              onEnded={handleVideoEnd}
-              // onEnded={handleDelayedVideoEnd}
+              // onEnded={handleVideoEnd}
+              onEnded={handleDelayedVideoEnd}
             //   onEnded={async () => {
             //     await new Promise(resolve => setTimeout(resolve, 700));
             //     handleVideoEnd();
