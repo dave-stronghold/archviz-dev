@@ -261,7 +261,7 @@ export default function Archviz() {
     const handleVideoPlay = () => {
       rafHandle.current = requestAnimationFrame(updateCanvas);
     };
-    const handleVideoEnd = () => {
+    const drawFrame = () => {
       // Ensure the last frame is drawn
       if (video.videoWidth && video.videoHeight) {
         canvas.width = video.videoWidth;
@@ -276,13 +276,13 @@ export default function Archviz() {
     };
 
     // video.addEventListener("play", handleVideoPlay);
-    video.addEventListener("ended", handleVideoEnd);
-    video.addEventListener("play", handleVideoEnd);
+    video.addEventListener("ended", drawFrame);
+    video.addEventListener("play", drawFrame);
     // Clean up when component unmounts or video source changes
     return () => {
       // video.removeEventListener("play", handleVideoPlay);
-      video.removeEventListener("ended", handleVideoEnd);
-      video.addEventListener("play", handleVideoEnd);
+      video.removeEventListener("ended", drawFrame);
+      video.addEventListener("play", drawFrame);
       cancelAnimationFrame(rafHandle.current);
     };
   }, [vdo]);

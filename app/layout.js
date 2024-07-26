@@ -11,6 +11,7 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html translate="no">
+      <meta name="google" content="notranslate"></meta>
       <body className={urbanist.className}>{children}</body>
     </html>
   );
