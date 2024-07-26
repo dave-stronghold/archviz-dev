@@ -1,5 +1,5 @@
 import { atom } from 'jotai'
-import carouselData from "@/data/scenes/testCarouselData";
+import carouselData from "@/data/scenes/carouselData";
 const video=carouselData.videos
 export const activeButtonStateAtom=atom(true)
 export const transitionRunningAtom=atom(false)

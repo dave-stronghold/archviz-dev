@@ -3,96 +3,96 @@
     {},
     {
       "id": 1,
-      "path": "/videos/apt/ext1-iso1.mp4",
+      "path": "/videos/apt901/ext1-iso1.mp4",
       "to": 3
     },
     {
       "id": 2,
-      "path": "/videos/apt/iso1-ext1.mp4",
+      "path": "/videos/apt901/iso1-ext1.mp4",
       "to": 9
     },
     {
       "id": 3,
-      "path": "/videos/apt/iso1-iso1.mp4",
+      "path": "/videos/apt901/iso1-iso1.mp4",
       "loop": true,
       "type": "iso1-loop"
     },
     {
       "id": 4,
-      "path": "/videos/apt/ext1-iso2.mp4",
+      "path": "/videos/apt901/ext1-iso2.mp4",
       "to": 6
     },
     {
       "id": 5,
-      "path": "/videos/apt/iso2-ext1.mp4",
+      "path": "/videos/apt901/iso2-ext1.mp4",
       "to": 9
     },
     {
       "id": 6,
-      "path": "/videos/apt/iso2-iso2.mp4",
+      "path": "/videos/apt901/iso2-iso2.mp4",
       "loop": true,
       "type": "iso2-loop"
     },
     {
       "id": 7,
-      "path": "/videos/apt/iso2-iso1.mp4",
+      "path": "/videos/apt901/iso2-iso1.mp4",
       "to": 3
     },
     {
       "id": 8,
-      "path": "/videos/apt/iso1-iso2.mp4",
+      "path": "/videos/apt901/iso1-iso2.mp4",
       "to": 6
     },
     {
       "id": 9,
-      "path": "/videos/apt/ext1-ext1.mp4",
+      "path": "/videos/apt901/ext1-ext1.mp4",
       "loop": true,
       "type": "ext1-loop"
     },
     {
       "id": 10,
-      "path": "/videos/apt/iso1-hero_2.mp4",
+      "path": "/videos/apt901/iso1-hero_2.mp4",
       "toDefault": true
     },
     {
       "id": 11,
-      "path": "/videos/apt/iso2-hero_2.mp4",
+      "path": "/videos/apt901/iso2-hero_2.mp4",
       "toDefault": true
     },
     {
       "id": 12,
-      "path": "/videos/apt/ext1-hero_2.mp4",
+      "path": "/videos/apt901/ext1-hero_2.mp4",
       "toDefault": true
     },
     
     {
       "id": 13,
-      "path": "/videos/apt/hero_2-ext1.mp4",
+      "path": "/videos/apt901/hero_2-ext1.mp4",
       "to":9
     },
     {
       "id": 14,
-      "path": "/videos/apt/hero_2-iso1.mp4",
+      "path": "/videos/apt901/hero_2-iso1.mp4",
       "to":3
     },
     {
       "id": 15,
-      "path": "/videos/apt/hero_2-iso2.mp4",
+      "path": "/videos/apt901/hero_2-iso2.mp4",
       "to":6
     }
   ],
   "actions": {
     "ext1": {
-      "path": "/videos/apt/ext.png",
+      "path": "/videos/apt901/ext.png",
       "transitions": { "iso1-loop": 2, "iso2-loop": 5 },
       "invokeTour":false
     },
     "iso1": {
-      "path": "/videos/apt/iso1.png",
+      "path": "/videos/apt901/iso1.png",
       "transitions": { "ext1-loop": 1, "iso2-loop": 7 }
     },
     "iso2": {
-      "path": "/videos/apt/iso2.png",
+      "path": "/videos/apt901/iso2.png",
       "transitions": { "ext1-loop": 4, "iso1-loop": 8 }
     },
     "tour":true

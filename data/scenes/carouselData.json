@@ -3,7 +3,7 @@
     {
       "id": 0,
       "path": "/videos/carousel/0-1.mp4",
-      "to":1
+      "to": 1
     },
     {
       "id": 1,
@@ -39,7 +39,7 @@
     {
       "id": 9,
       "path": "/videos/carousel/4-1.mp4",
-      "to":1
+      "to": 1
     },
     {
       "id": 10,
@@ -47,9 +47,35 @@
       "loop": true,
       "type": "4-loop"
     },
-    { "id": 11, "path": "/videos/carousel/4-hero_2.mp4", "toDefault": true },
-    { "id": 12, "path": "/videos/carousel/ark_hero_2-hero_1.mp4", "to": 1 },
-    { "id": 13, "path": "/videos/carousel/ark_hero_1-hero_2.mp4", "toDefault": true }
-    
-  ]
+    {
+      "id": 11,
+      "path": "/videos/carousel/4-hero_2.mp4",
+      "toDefault": true
+    },
+    { "id": 12, "path": "/videos/carousel/hero_2-1.mp4", "to": 1 },
+    {
+      "id": 13,
+      "path": "/videos/carousel/1-hero_2.mp4",
+      "toDefault": true
+    },
+
+    { "id": 14, "path": "/videos/carousel/hero_2-2.mp4", "to": 3 },
+    { "id": 15, "path": "/videos/carousel/hero_2-3.mp4", "to": 6 },
+    { "id": 16, "path": "/videos/carousel/hero_2-4.mp4", "to": 10 },
+    { "id": 17, "path": "/videos/carousel/4-3.mp4", "to": 6 },
+    { "id": 18, "path": "/videos/carousel/3-2.mp4", "to": 3 },
+    { "id": 19, "path": "/videos/carousel/2-1.mp4", "to": 1 },
+    { "id": 20, "path": "/videos/carousel/1-4.mp4", "to": 10 }
+  ],
+  
+  "actions": {
+    "Previous": {
+      "transitions": { "1-loop": 20, "2-loop": 19, "3-loop": 18, "4-loop": 17 }
+    },
+
+
+    "Next": {
+      "transitions": { "1-loop": 2, "2-loop": 4, "3-loop": 7, "4-loop": 9 }
+    }
+  }
 }

@@ -8,13 +8,13 @@
     },
     {
       "id":1,
-      "path":"/videos/apt/iso1-iso1.mp4",
+      "path":"/videos/apt901/iso1-iso1.mp4",
       "loop":true,
       "type":"iso1-loop"
     },
     {
       "id":2,
-      "path":"/videos/apt/iso2-iso2.mp4",
+      "path":"/videos/apt901/iso2-iso2.mp4",
       "loop":true,
       "type":"iso2-loop"
     }

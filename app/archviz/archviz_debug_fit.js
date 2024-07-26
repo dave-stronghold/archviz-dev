@@ -4,13 +4,14 @@ import { useState, useEffect, useRef } from "react";
 import { useAtom } from "jotai";
 import screenfull from "screenfull";
 
-import carouselData from "@/data/scenes/testCarouselData";
 import PrefetchVideos from "./PrefetchVideos";
+
+import carouselData from "@/data/scenes/carouselData";
 import defaultData from "@/data/scenes/defaultData.json";
 import swimmingData from "@/data/scenes/swimmingPoolData.json";
 import clubData from "@/data/scenes/clubHouseData.json";
 import parkData from "@/data/scenes/parkData.json";
-import aptData from "@/data/scenes/testApt.json";
+import aptData from "@/data/scenes/apt901.json";
 import aptData2 from "@/data/scenes/apt507.json";
 import interiorData from "@/data/scenes/interiorData.json";
 
@@ -44,7 +45,7 @@ export default function Archviz() {
   const [video, setVideo] = useState(carouselData.videos);
   const [debug, setDebug] = useState(false);
   const [play, setPlay] = useState(false);
-  const [debugButton] = useState(true);
+  const [debugButton] = useState(false);
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const [actions, setActions] = useState(carouselData.actions);
