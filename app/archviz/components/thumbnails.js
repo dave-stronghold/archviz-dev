@@ -17,7 +17,7 @@ import {
   currentMenuAtom,
   showWalkAtom,
 } from "@/data/atoms";
-import { Player, Controls } from "@lottiefiles/react-lottie-player";
+// import { Player, Controls } from "@lottiefiles/react-lottie-player";
 
 const Lottie = () => {
   return (
@@ -86,7 +86,7 @@ export default function Thumbnails({
                 <Camera size={18} /> Guided Tour
               </div>
               <div className="absolute -z-10 bottom-0">
-                <Lottie />
+                {/* <Lottie /> */}
               </div>
             </motion.div>
           )}

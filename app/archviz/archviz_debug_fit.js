@@ -29,6 +29,7 @@ import {
   currentVideoLoadedAtom,
   readyToFadeAtom,
   showAAtom,
+  loadingAtom,
 } from "@/data/atoms";
 
 const defaultVideo = defaultData.videos;
@@ -38,6 +39,7 @@ import Thumbnails from "./components/thumbnails";
 import Interface from "./components/interface";
 import { Eye, EyeOff, Fullscreen, Shrink } from "lucide-react";
 import Fade from "./components/fade";
+import Loading from "./components/loading";
 const videosToFetch = videoUrls.videoUrls;
 
 export default function Archviz() {
@@ -53,6 +55,7 @@ export default function Archviz() {
   const [a, showA] = useAtom(showAAtom);
   const [b, showB] = useState(false);
   const [vdo, setVdo] = useAtom(vdoAtom);
+  const [loading, setLoading] = useAtom(loadingAtom);
 
   const [currentVideoType, setCurrentVideoType] = useAtom(currentVideoAtom);
   const [currentSub, setCurrentSub] = useAtom(currentSubVideoAtom);
@@ -189,7 +192,7 @@ export default function Archviz() {
   };
 
   const handlePlay = () => {
-    if(showA)showA(false);
+    if (showA) showA(false);
     setCurrentVideoType(vdo.type);
     setCanFade(true);
     setCurrentSub(vdo.sub);
@@ -233,8 +236,8 @@ export default function Archviz() {
     }
     setFullScreen((prev) => !prev);
   };
-  
-  let rafHandle =useRef( null);
+
+  let rafHandle = useRef(null);
   let frameCount = 0;
   const skipFrames = 30; // Number of frames to skip
 
@@ -245,7 +248,10 @@ export default function Archviz() {
 
     const updateCanvas = () => {
       frameCount++;
-      if (frameCount % skipFrames !== 0|| video.currentTime === video.duration) {
+      if (
+        frameCount % skipFrames !== 0 ||
+        video.currentTime === video.duration
+      ) {
         rafHandle.current = requestAnimationFrame(updateCanvas);
         return;
       }
@@ -289,6 +295,10 @@ export default function Archviz() {
   }, [vdo]);
 
   useEffect(() => {
+    setLoading(true);
+  }, [vdo]);
+
+  useEffect(() => {
     const video = videoRef.current;
     if (!play) {
       video.play();
@@ -300,7 +310,7 @@ export default function Archviz() {
     <>
       <PrefetchVideos videoUrls={carouselUrls.carouselUrls} />
       <div ref={containerRef} className="relative cursor-fancy overflow-hidden">
-        <Fade />
+        {/* <Fade /> */}
 
         <button
           onClick={handleFullscreen}
@@ -324,8 +334,11 @@ export default function Archviz() {
         </button>
         {interfaceUI && <Interface />}
 
+        <Loading />
+
         {debugButton && (
-          <button translate="no"
+          <button
+            translate="no"
             className="fixed z-[21] bg-yellow-600"
             onClick={() => setDebug((prev) => !prev)}
           >
@@ -350,9 +363,7 @@ export default function Archviz() {
             </>
           ) : null}
           <div
-            className={`aspect-video ${
-              debug ? " h-1/4 " : "absolute  w-full"
-            }`}
+            className={`aspect-video ${debug ? " h-1/4 " : "absolute  w-full"}`}
           >
             <video
               muted
@@ -371,23 +382,20 @@ export default function Archviz() {
               onSeeking={() => showA(false)}
               disablePictureInPicture
               webkit-playsinline="true"
-
-              onLoadedData={() => setCanFade(false)}
+              onLoadedData={() => {
+                setCanFade(false);
+              }}
+              onCanPlayThrough={() => setLoading(false)}
               onPlaying={handlePlay}
               // onEnded={handleVideoEnd}
               onEnded={handleDelayedVideoEnd}
-            //   onEnded={async () => {
-            //     await new Promise(resolve => setTimeout(resolve, 700));
-            //     handleVideoEnd();
-            // }}
-
+              //   onEnded={async () => {
+              //     await new Promise(resolve => setTimeout(resolve, 700));
+              //     handleVideoEnd();
+              // }}
             ></video>
           </div>
-          <div
-            className={`aspect-video ${
-              debug ? "h-1/4" : "  w-full"
-            }`}
-          >
+          <div className={`aspect-video ${debug ? "h-1/4" : "  w-full"}`}>
             <canvas
               className="w-full"
               ref={canvasRef}
