@@ -21,6 +21,7 @@ export default function Fade() {
     <AnimatePresence>
       {fade && (
         <motion.div
+        key={'fade'}
           initial={{ opacity: 1 }}
           // animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
