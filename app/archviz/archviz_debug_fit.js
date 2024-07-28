@@ -196,7 +196,7 @@ export default function Archviz() {
   const handlePlay = () => {
     if (showA) showA(false);
     setCurrentVideoType(vdo.type);
-    // setCanFade(true);
+    setCanFade(true);
     setCurrentSub(vdo.sub);
   };
   const handleDelayedVideoEnd = () => {
@@ -297,7 +297,6 @@ export default function Archviz() {
   }, [vdo]);
   let loadingTimeout=useRef(null);
   useEffect(() => {
-    setCanFade(true);
 
     setShowLoading(false);
     setLoading(true);
@@ -396,10 +395,9 @@ export default function Archviz() {
               disablePictureInPicture
               webkit-playsinline="true"
               onLoadedData={() => {
-                // setCanFade(false);
+                setCanFade(false);
               }}
               onCanPlayThrough={() => {
-                setCanFade(false);
                 setLoading(false);
                 setShowLoading(false);
                 clearTimeout(loadingTimeout.current);
