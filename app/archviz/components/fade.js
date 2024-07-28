@@ -5,7 +5,7 @@ import { motion, AnimatePresence } from "framer-motion";
 
 export default function Fade() {
   const [fade, setFade] = useAtom(FadeAtom);
-  const [canFade] = useAtom(readyToFadeAtom);
+  const [canFade,setCanFade] = useAtom(readyToFadeAtom);
   useEffect(() => {
     // const timeoutId = setTimeout(() => setFade(false), 600);
     // return () => {
@@ -15,6 +15,7 @@ export default function Fade() {
     if (canFade) {
       setFade(false);
     }
+    return(()=>setCanFade(false))
   }, [canFade, setFade]);
 
   return (

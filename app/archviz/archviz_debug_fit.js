@@ -402,7 +402,7 @@ export default function Archviz() {
                 // setCanFade(false);
               }}
               onCanPlayThrough={() => {
-                setCanFade(false);
+                // setCanFade(false);
                 setLoading(false);
                 setShowLoading(false);
                 clearTimeout(loadingTimeout.current);
