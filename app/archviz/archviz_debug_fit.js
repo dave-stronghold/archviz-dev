@@ -46,7 +46,7 @@ const videosToFetch = videoUrls.videoUrls;
 export default function Archviz() {
   const [scene] = useAtom(sceneAtom);
   const [video, setVideo] = useState(carouselData.videos);
-  const [debug, setDebug] = useState(false);
+  const [debug, setDebug] = useState(true);
   const [play, setPlay] = useState(false);
   const [debugButton] = useState(true);
   const canvasRef = useRef(null);
@@ -324,6 +324,7 @@ export default function Archviz() {
 
   return (
     <>
+      {/* <PrefetchVideos videoUrls={carouselUrls.carouselUrls} /> */}
       <div ref={containerRef} className="relative cursor-fancy overflow-hidden">
         <Fade />
 
@@ -384,22 +385,22 @@ export default function Archviz() {
               muted
               ref={videoRef}
               key={1}
-              poster="/a.webp"
+              poster="image"
               className="w-full"
               src={vdo.path}
               type="video/mp4"
-              autoPlay
+              autoPlay={play}
               loop={vdo.loop}
-              // preload="auto"
+              preload="auto"
               controlsList="nodownload nofullscreen noremoteplayback"
               x5-playsinline="true"
               playsInline
               onSeeking={() => showA(false)}
               disablePictureInPicture
               webkit-playsinline="true"
-              // onLoadedData={() => {
-              //   // setCanFade(false);
-              // }}
+              onLoadedData={() => {
+                // setCanFade(false);
+              }}
               onCanPlayThrough={() => {
                 // setCanFade(false);
                 setLoading(false);
@@ -444,8 +445,6 @@ export default function Archviz() {
           />
         )}
       </div>
-      {/* <PrefetchVideos videoUrls={carouselUrls.carouselUrls} /> */}
     </>
   );
 }
-//rc
