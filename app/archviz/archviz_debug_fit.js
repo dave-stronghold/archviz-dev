@@ -48,7 +48,7 @@ export default function Archviz() {
   const [video, setVideo] = useState(carouselData.videos);
   const [debug, setDebug] = useState(false);
   const [play, setPlay] = useState(false);
-  const [debugButton] = useState(false);
+  const [debugButton] = useState(true);
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const [actions, setActions] = useState(carouselData.actions);
@@ -365,7 +365,7 @@ export default function Archviz() {
           {a ? (
             <>
               <Image
-                className={`aspect-video ${
+                className={`aspect-video hidden ${
                   debug ? "h-1/4 w-1/2" : "absolute  w-full"
                 }`}
                 priority={true}
@@ -383,23 +383,23 @@ export default function Archviz() {
             <video
               muted
               ref={videoRef}
-              key={1}
-              poster="image"
+              // key={'1'}
+              
               className="w-full"
               src={vdo.path}
               type="video/mp4"
-              autoPlay={play}
+              autoPlay
               loop={vdo.loop}
-              preload="auto"
+              // preload="auto"
               controlsList="nodownload nofullscreen noremoteplayback"
               x5-playsinline="true"
               playsInline
               onSeeking={() => showA(false)}
               disablePictureInPicture
               webkit-playsinline="true"
-              onLoadedData={() => {
-                // setCanFade(false);
-              }}
+              // onLoadedData={() => {
+              //   // setCanFade(false);
+              // }}
               onCanPlayThrough={() => {
                 // setCanFade(false);
                 setLoading(false);
