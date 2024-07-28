@@ -316,6 +316,7 @@ export default function Archviz() {
 
   useEffect(() => {
     const video = videoRef.current;
+    console.log('play start')
     
       video.play();
       setPlay(true);
@@ -388,7 +389,7 @@ export default function Archviz() {
               className="w-full"
               src={vdo.path}
               type="video/mp4"
-              autoPlay={true}
+              autoPlay
               loop={vdo.loop}
               preload="auto"
               controlsList="nodownload nofullscreen noremoteplayback"
