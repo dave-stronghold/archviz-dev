@@ -46,7 +46,7 @@ const videosToFetch = videoUrls.videoUrls;
 export default function Archviz() {
   const [scene] = useAtom(sceneAtom);
   const [video, setVideo] = useState(carouselData.videos);
-  const [debug, setDebug] = useState(true);
+  const [debug, setDebug] = useState(false);
   const [play, setPlay] = useState(false);
   const [debugButton] = useState(true);
   const canvasRef = useRef(null);
