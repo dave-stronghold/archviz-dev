@@ -314,13 +314,13 @@ export default function Archviz() {
     return () => clearTimeout(loadingTimeout.current);
   }, [vdo]);
 
-  useEffect(() => {
-    const video = videoRef.current;
-    if (!play) {
-      video.play();
-      setPlay(true);
-    }
-  }, []);
+  // useEffect(() => {
+  //   const video = videoRef.current;
+  //   if (!play) {
+  //     video.play();
+  //     setPlay(true);
+  //   }
+  // }, []);
 
   return (
     <>
@@ -390,11 +390,11 @@ export default function Archviz() {
               type="video/mp4"
               autoPlay
               loop={vdo.loop}
-              // preload="auto"
+              preload="auto"
               controlsList="nodownload nofullscreen noremoteplayback"
               x5-playsinline="true"
               playsInline
-              onSeeking={() => showA(false)}
+              // onSeeking={() => showA(false)}
               disablePictureInPicture
               webkit-playsinline="true"
               // onLoadedData={() => {
