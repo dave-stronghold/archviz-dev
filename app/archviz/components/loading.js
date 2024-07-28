@@ -1,21 +1,21 @@
-import { AnimatePresence, motion } from "framer-motion";
-import { vdoAtom, loadingAtom, sceneAtom } from "@/data/atoms";
+import React from 'react';
+import { AnimatePresence, motion } from 'framer-motion';
+import { useAtom } from 'jotai';
+import { Loader2Icon } from 'lucide-react';
+import { vdoAtom, showloadingAtom } from '@/data/atoms';
 
-import { useAtom } from "jotai";
-import { Loader2Icon } from "lucide-react";
-export default function Loading() {
-  const [loading] = useAtom(loadingAtom);
+const Loading = () => {
+  const [showLoading] = useAtom(showloadingAtom);
   const [vdo] = useAtom(vdoAtom);
-  const [scene] = useAtom(sceneAtom);
+
   return (
     <AnimatePresence>
-      {/* {console.log(vdo.loop, loading)} */}
-      {loading && !vdo.loop && (
+      {showLoading && !vdo.loop && (
         <motion.div
           key={vdo.src}
-          initial={{ y: -100, x: "-50%" }}
-          animate={{ y:  0, x: "-50%" }}
-          exit={{ y: -100, x: "-50%" }}
+          initial={{ y: -100, x: '-50%' }}
+          animate={{ y: 0, x: '-50%' }}
+          exit={{ y: -100, x: '-50%' }}
           className="fixed z-[21] flex items-center gap-2 -translate-x-1/2 left-1/2 bg-black rounded-md px-3 text-gray-300 py-1 text-sm top-6"
         >
           <motion.div
@@ -25,7 +25,7 @@ export default function Loading() {
             transition={{
               duration: 1,
               repeat: Infinity,
-              ease: "linear",
+              ease: 'linear',
             }}
           >
             <Loader2Icon className="text-orange-400" size={18} />
@@ -35,4 +35,6 @@ export default function Loading() {
       )}
     </AnimatePresence>
   );
-}
+};
+
+export default Loading;

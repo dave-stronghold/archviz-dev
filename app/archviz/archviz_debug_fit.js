@@ -30,6 +30,7 @@ import {
   readyToFadeAtom,
   showAAtom,
   loadingAtom,
+  showloadingAtom,
 } from "@/data/atoms";
 
 const defaultVideo = defaultData.videos;
@@ -70,6 +71,7 @@ export default function Archviz() {
   const [fullscreen, setFullScreen] = useState(false);
 
   const [canFade, setCanFade] = useAtom(readyToFadeAtom);
+  const [showLoading, setShowLoading] = useAtom(showloadingAtom);
   const containerRef = useRef(null);
 
   useEffect(() => {
@@ -194,7 +196,7 @@ export default function Archviz() {
   const handlePlay = () => {
     if (showA) showA(false);
     setCurrentVideoType(vdo.type);
-    setCanFade(true);
+    // setCanFade(true);
     setCurrentSub(vdo.sub);
   };
   const handleDelayedVideoEnd = () => {
@@ -293,10 +295,21 @@ export default function Archviz() {
       cancelAnimationFrame(rafHandle.current);
     };
   }, [vdo]);
-
+  let loadingTimeout=useRef(null);
   useEffect(() => {
+    setCanFade(true);
+
+    setShowLoading(false);
     setLoading(true);
-  }, [vdo]);
+
+    loadingTimeout.current = setTimeout(() => {
+      if (loading) {
+        setShowLoading(true);
+      }
+    }, 1000); // Show loading UI if loading takes more than 1 second
+
+    return () => clearTimeout(loadingTimeout.current);
+  }, [vdo,setLoading,showLoading]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -310,7 +323,7 @@ export default function Archviz() {
     <>
       <PrefetchVideos videoUrls={carouselUrls.carouselUrls} />
       <div ref={containerRef} className="relative cursor-fancy overflow-hidden">
-        {/* <Fade /> */}
+        <Fade />
 
         <button
           onClick={handleFullscreen}
@@ -383,16 +396,21 @@ export default function Archviz() {
               disablePictureInPicture
               webkit-playsinline="true"
               onLoadedData={() => {
-                setCanFade(false);
+                // setCanFade(false);
               }}
-              onCanPlayThrough={() => setLoading(false)}
+              onCanPlayThrough={() => {
+                setCanFade(false);
+                setLoading(false);
+                setShowLoading(false);
+                clearTimeout(loadingTimeout.current);
+              }}
               onPlaying={handlePlay}
-              // onEnded={handleVideoEnd}
+              onLoadStart={()=>{
+                setTimeout(()=>{
+                  if(loading)setShowLoading(true)
+                },1000)
+              }}
               onEnded={handleDelayedVideoEnd}
-              //   onEnded={async () => {
-              //     await new Promise(resolve => setTimeout(resolve, 700));
-              //     handleVideoEnd();
-              // }}
             ></video>
           </div>
           <div className={`aspect-video ${debug ? "h-1/4" : "  w-full"}`}>
