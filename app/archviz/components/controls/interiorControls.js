@@ -232,7 +232,7 @@ export default function InteriorControls() {
     "Bed Room 3",
   ];
   const defaultClass = `bg-black/85 font-medium cursor-fancy text-gray-200 rounded-[14px] text-[14px] px-4 py-2 hover:text-gray-50 `;
-  const activeClass = `bg-black cursor-fancy rounded-[14px] px-4 text-[14px] py-2 text-gray-50 font-semibold`;
+  const activeClass = `bg-black cursor-fancy rounded-[14px] px-4 text-[14px] py-2 text-orange-400 font-semibold`;
 
   useEffect(() => {
     console.log("rendered interior controls");

@@ -48,7 +48,7 @@ export default function Archviz() {
   const [video, setVideo] = useState(carouselData.videos);
   const [debug, setDebug] = useState(false);
   const [play, setPlay] = useState(false);
-  const [debugButton] = useState(true);
+  const [debugButton] = useState(false);
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const [actions, setActions] = useState(carouselData.actions);
@@ -309,7 +309,7 @@ export default function Archviz() {
         if (current != false) setShowLoading(true);
         return current
       });
-    }, 1500); 
+    }, 2000); 
 
     return () => clearTimeout(loadingTimeout.current);
   }, [vdo]);
