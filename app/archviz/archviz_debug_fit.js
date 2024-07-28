@@ -300,7 +300,7 @@ export default function Archviz() {
   useEffect(() => {
     setShowLoading(false);
     setLoading(true);
-    
+
     setCanFade(true);
 
 
@@ -399,9 +399,10 @@ export default function Archviz() {
               disablePictureInPicture
               webkit-playsinline="true"
               onLoadedData={() => {
-                setCanFade(false);
+                // setCanFade(false);
               }}
               onCanPlayThrough={() => {
+                setCanFade(false);
                 setLoading(false);
                 setShowLoading(false);
                 clearTimeout(loadingTimeout.current);
