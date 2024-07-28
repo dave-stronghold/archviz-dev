@@ -306,7 +306,7 @@ export default function Archviz() {
         if (current != false) setShowLoading(true);
         return current
       });
-    }, 1000); 
+    }, 1500); 
 
     return () => clearTimeout(loadingTimeout.current);
   }, [vdo]);
