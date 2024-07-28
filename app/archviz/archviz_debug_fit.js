@@ -196,7 +196,7 @@ export default function Archviz() {
   const handlePlay = () => {
     if (showA) showA(false);
     setCurrentVideoType(vdo.type);
-    setCanFade(true);
+    // setCanFade(true);
     setCurrentSub(vdo.sub);
   };
   const handleDelayedVideoEnd = () => {
@@ -300,6 +300,9 @@ export default function Archviz() {
   useEffect(() => {
     setShowLoading(false);
     setLoading(true);
+    
+    setCanFade(true);
+
 
     loadingTimeout.current = setTimeout(() => {
       setLoading((current) => {
