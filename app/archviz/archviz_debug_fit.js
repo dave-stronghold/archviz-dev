@@ -295,20 +295,21 @@ export default function Archviz() {
       cancelAnimationFrame(rafHandle.current);
     };
   }, [vdo]);
-  let loadingTimeout=useRef(null);
+  
+  let loadingTimeout = useRef(null);
   useEffect(() => {
-
     setShowLoading(false);
     setLoading(true);
 
     loadingTimeout.current = setTimeout(() => {
-      if (loading) {
-        setShowLoading(true);
-      }
-    }, 1000); // Show loading UI if loading takes more than 1 second
+      setLoading((current) => {
+        if (current != false) setShowLoading(true);
+        return current
+      });
+    }, 1000); 
 
     return () => clearTimeout(loadingTimeout.current);
-  }, [vdo,setLoading,showLoading]);
+  }, [vdo]);
 
   useEffect(() => {
     const video = videoRef.current;
@@ -403,11 +404,6 @@ export default function Archviz() {
                 clearTimeout(loadingTimeout.current);
               }}
               onPlaying={handlePlay}
-              onLoadStart={()=>{
-                setTimeout(()=>{
-                  if(loading)setShowLoading(true)
-                },1000)
-              }}
               onEnded={handleDelayedVideoEnd}
             ></video>
           </div>
