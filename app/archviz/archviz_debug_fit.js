@@ -444,7 +444,7 @@ export default function Archviz() {
           />
         )}
       </div>
-      <PrefetchVideos videoUrls={carouselUrls.carouselUrls} />
+      {/* <PrefetchVideos videoUrls={carouselUrls.carouselUrls} /> */}
     </>
   );
 }
