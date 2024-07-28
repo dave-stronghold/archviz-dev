@@ -324,7 +324,6 @@ export default function Archviz() {
 
   return (
     <>
-      <PrefetchVideos videoUrls={carouselUrls.carouselUrls} />
       <div ref={containerRef} className="relative cursor-fancy overflow-hidden">
         <Fade />
 
@@ -445,6 +444,7 @@ export default function Archviz() {
           />
         )}
       </div>
+      <PrefetchVideos videoUrls={carouselUrls.carouselUrls} />
     </>
   );
 }
