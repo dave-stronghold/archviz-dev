@@ -314,13 +314,13 @@ export default function Archviz() {
     return () => clearTimeout(loadingTimeout.current);
   }, [vdo]);
 
-  // useEffect(() => {
-  //   const video = videoRef.current;
-  //   if (!play) {
-  //     video.play();
-  //     setPlay(true);
-  //   }
-  // }, []);
+  useEffect(() => {
+    const video = videoRef.current;
+    
+      video.play();
+      setPlay(true);
+   
+  }, []);
 
   return (
     <>
@@ -383,12 +383,12 @@ export default function Archviz() {
             <video
               muted
               ref={videoRef}
-              // key={'1'}
+              key={'1'}
               
               className="w-full"
               src={vdo.path}
               type="video/mp4"
-              autoPlay
+              autoPlay={true}
               loop={vdo.loop}
               preload="auto"
               controlsList="nodownload nofullscreen noremoteplayback"
