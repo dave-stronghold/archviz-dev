@@ -316,11 +316,10 @@ export default function Archviz() {
 
   useEffect(() => {
     const video = videoRef.current;
-    console.log('play start')
-    
+    if (!play) {
       video.play();
       setPlay(true);
-   
+    }
   }, []);
 
   return (
@@ -366,7 +365,7 @@ export default function Archviz() {
           {a ? (
             <>
               <Image
-                className={`aspect-video hidden ${
+                className={`aspect-video ${
                   debug ? "h-1/4 w-1/2" : "absolute  w-full"
                 }`}
                 priority={true}
@@ -384,18 +383,18 @@ export default function Archviz() {
             <video
               muted
               ref={videoRef}
-              key={'1'}
-              
+              key={1}
+              poster="/a.webp"
               className="w-full"
               src={vdo.path}
               type="video/mp4"
               autoPlay
               loop={vdo.loop}
-              preload="auto"
+              // preload="auto"
               controlsList="nodownload nofullscreen noremoteplayback"
               x5-playsinline="true"
               playsInline
-              // onSeeking={() => showA(false)}
+              onSeeking={() => showA(false)}
               disablePictureInPicture
               webkit-playsinline="true"
               // onLoadedData={() => {
