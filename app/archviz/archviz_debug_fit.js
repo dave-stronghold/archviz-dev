@@ -48,7 +48,7 @@ export default function Archviz() {
   const [video, setVideo] = useState(carouselData.videos);
   const [debug, setDebug] = useState(false);
   const [play, setPlay] = useState(false);
-  const [debugButton] = useState(false);
+  const [debugButton] = useState(true);
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const [actions, setActions] = useState(carouselData.actions);
@@ -291,7 +291,7 @@ export default function Archviz() {
     return () => {
       // video.removeEventListener("play", handleVideoPlay);
       video.removeEventListener("ended", drawFrame);
-      video.addEventListener("play", drawFrame);
+      video.removeEventListener("play", drawFrame);
       cancelAnimationFrame(rafHandle.current);
     };
   }, [vdo]);
@@ -385,7 +385,7 @@ export default function Archviz() {
               muted
               ref={videoRef}
               key={1}
-              poster="image"
+              // poster="image"
               className="w-full"
               src={vdo.path}
               type="video/mp4"
