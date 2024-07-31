@@ -385,6 +385,8 @@ export default function Archviz() {
               muted
               ref={videoRef}
               key={1}
+              width={1920}
+              height={1080}
               // poster="image"
               className="w-full"
               src={vdo.path}
