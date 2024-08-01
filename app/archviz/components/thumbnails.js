@@ -78,7 +78,7 @@ export default function Thumbnails({
               // className="absolute bg-cyan-200 bottom-24 left-1/2   text-gray-200"
             >
               <div
-                onClick={() => {
+                onClickCapture={() => {
                   setScene("interior");
                 }}
                 className="flex bg-black/80 px-4 py-2 rounded-[16px] justify-center items-center gap-2  hover:bg-orange-400 hover:text-black font-medium "
@@ -102,7 +102,7 @@ export default function Thumbnails({
               <div className="absolute bottom-4  flex left-1/2 -translate-x-1/2 justify-center items-center gap-0 bg-black/80 rounded-[24px] lg:rounded-b-none lg:bottom-0  px-5 py-4">
                 <div
                   className="text-gray-300 hover:text-lg bg-black p-2 rounded-full hover:bg-orange-600 hover:text-black"
-                  onClick={() => {
+                  onClickCapture={() => {
                     if (scene == "interior") {
                       setHandleBack(!handleBack);
                       setScene(interiorSignal);
@@ -130,7 +130,7 @@ export default function Thumbnails({
                     <div key={key}>
                       {key == "Previous" && (
                         <div
-                          onClick={() => {
+                          onClickCapture={() => {
                             handleAction(action);
                           }}
                           className="text-gray-200 rounded-[12px] p-2 ml-4 bg-black hover:bg-orange-500 hover:text-black"
@@ -140,7 +140,7 @@ export default function Thumbnails({
                       )}
                       {key == "Next" && (
                         <div
-                          onClick={() => {
+                          onClickCapture={() => {
                             handleAction(action);
                           }}
                           // className={`${showWalk?"text-gray-200 rounded-[12px] p-2 bg-black hover:bg-orange-500 hover:text-black":"hidden"}`}
@@ -151,7 +151,7 @@ export default function Thumbnails({
                       )}
                       {key == "Next_in" && showWalk && (
                         <div
-                          onClick={() => {
+                          onClickCapture={() => {
                             handleAction(action);
                           }}
                           // className={`${showWalk?"text-gray-200 rounded-[12px] p-2 bg-black hover:bg-orange-500 hover:text-black":"hidden"}`}
@@ -162,7 +162,7 @@ export default function Thumbnails({
                       )}
                       {action.path && (
                         <img
-                          onClick={() => {
+                          onClickCapture={() => {
                             if (!transitionRunning) {
                               setHomeRun(false);
                               action.invokeTour == false
