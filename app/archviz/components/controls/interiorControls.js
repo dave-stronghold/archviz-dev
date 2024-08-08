@@ -9,6 +9,8 @@ import {
   thumbAtom,
   currentMenuAtom,
   showWalkAtom,
+  showPanoramaAtom,
+  panoramaAtom,
 } from "@/data/atoms";
 import { motion, AnimatePresence } from "framer-motion";
 import interiorData from "@/data/scenes/interiorData.json";
@@ -20,6 +22,7 @@ import {
   Eye,
   Footprints,
   Telescope,
+  Rotate3d,
   Triangle,
   View,
 } from "lucide-react";
@@ -95,6 +98,8 @@ const Views = () => {
   const [vdo, setVdo] = useAtom(vdoAtom);
   const [fade, setFade] = useAtom(FadeAtom);
   const [showWalk, setShowWalk] = useAtom(showWalkAtom);
+  const [showPanorama, setShowPanorama] = useAtom(showPanoramaAtom);
+  const [panorama, setPanorama] = useAtom(panoramaAtom);
 
   const handleA = () => {
     setShowWalk(!showWalk);
@@ -124,6 +129,12 @@ const Views = () => {
     }
   };
 
+  const handlePanorama = () => {
+    setShowPanorama(true);
+  };
+  useEffect(() => {
+    setPanorama(interiorData.panorama[sub]);
+  }, [sub]);
   return (
     <>
       <AnimatePresence key={"asd"}>
@@ -211,6 +222,28 @@ const Views = () => {
             >
               <Cctv strokeWidth={1.2} />
             </motion.div>
+            <motion.div
+              key="3"
+              className="absolute z-10 top-1/2 left-4 -translate-y-1/2 bg-black p-2 rounded-[12px] text-gray-300 hover:text-gray-50 "
+              initial={{
+                x: 0,
+                y: 0,
+                rotate: "0deg",
+              }}
+              animate={{
+                x: 50,
+                y: 0,
+                rotate: "360deg",
+              }}
+              exit={{
+                x: 0,
+                y: 0,
+              }}
+              transition={{}}
+              onClick={handlePanorama}
+            >
+              <Rotate3d strokeWidth={1.2} />
+            </motion.div>
           </>
         )}
       </AnimatePresence>
@@ -250,7 +283,10 @@ export default function InteriorControls() {
             transition={{ easings: "easeInOut" }}
             className="absolute z-10 top-2 left-1/2 w-full -translate-x-1/2 "
           >
-            <div translate="no" className="p-4 flex text-gray-300 justify-center gap-3 ">
+            <div
+              translate="no"
+              className="p-4 flex text-gray-300 justify-center gap-3 "
+            >
               <div
                 key={rooms[0]}
                 className={sub == "lr" ? activeClass : defaultClass}
@@ -292,8 +328,9 @@ export default function InteriorControls() {
                 className={sub == "kit" ? activeClass : defaultClass}
                 onClick={() => {
                   if (vdo.id != 20) {
-                  setFade(true);
-                  setVdo(video[20]);}
+                    setFade(true);
+                    setVdo(video[20]);
+                  }
                 }}
               >
                 {rooms[3]}
@@ -303,8 +340,9 @@ export default function InteriorControls() {
                 className={sub == "bd3" ? activeClass : defaultClass}
                 onClick={() => {
                   if (vdo.id != 14) {
-                  setFade(true);
-                  setVdo(video[14]);}
+                    setFade(true);
+                    setVdo(video[14]);
+                  }
                 }}
               >
                 {rooms[4]}

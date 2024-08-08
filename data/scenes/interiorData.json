@@ -150,6 +150,15 @@
       "to":17
     }
   ],
+  
+  "panorama": {
+    "kit":"/videos/interior/panorama/kit.png",
+    "lr":"/videos/interior/panorama/lr.png",
+    "bd1":"/videos/interior/panorama/bd1.png",
+    "bd2":"/videos/interior/panorama/bd2.png",
+    "bd3":"/videos/interior/panorama/bd3.png"
+  },
+
   "actions": {
     "Next_in": {
       "transitions": { "lr1-loop": 1, "bd1a-loop": 2,"bd2a-loop":3,"Kit1-loop":4,"bd3a-loop":5 }

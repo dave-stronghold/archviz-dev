@@ -31,6 +31,7 @@ import {
   showAAtom,
   loadingAtom,
   showloadingAtom,
+  interfaceUIAtom,
 } from "@/data/atoms";
 
 const defaultVideo = defaultData.videos;
@@ -41,6 +42,7 @@ import Interface from "./components/interface";
 import { Eye, EyeOff, Fullscreen, Shrink } from "lucide-react";
 import Fade from "./components/fade";
 import Loading from "./components/loading";
+import Panorama from "./components/panorama/panorama";
 const videosToFetch = videoUrls.videoUrls;
 
 export default function Archviz() {
@@ -48,7 +50,7 @@ export default function Archviz() {
   const [video, setVideo] = useState(carouselData.videos);
   const [debug, setDebug] = useState(false);
   const [play, setPlay] = useState(false);
-  const [debugButton] = useState(true);
+  const [debugButton] = useState(false);
   const canvasRef = useRef(null);
   const videoRef = useRef(null);
   const [actions, setActions] = useState(carouselData.actions);
@@ -67,7 +69,7 @@ export default function Archviz() {
   const [handleBack, setHandleBack] = useAtom(handleBackAtom);
   const [interiorSignal, setInteriorSignal] = useAtom(interiorSignalAtom);
 
-  const [interfaceUI, setInterfaceUI] = useState(true);
+  const [interfaceUI, setInterfaceUI] = useAtom(interfaceUIAtom);
   const [fullscreen, setFullScreen] = useState(false);
 
   const [canFade, setCanFade] = useAtom(readyToFadeAtom);
@@ -295,7 +297,7 @@ export default function Archviz() {
       cancelAnimationFrame(rafHandle.current);
     };
   }, [vdo]);
-  
+
   let loadingTimeout = useRef(null);
   useEffect(() => {
     setShowLoading(false);
@@ -303,13 +305,12 @@ export default function Archviz() {
 
     setCanFade(true);
 
-
     loadingTimeout.current = setTimeout(() => {
       setLoading((current) => {
         if (current != false) setShowLoading(true);
-        return current
+        return current;
       });
-    }, 2000); 
+    }, 2000);
 
     return () => clearTimeout(loadingTimeout.current);
   }, [vdo]);
@@ -328,18 +329,18 @@ export default function Archviz() {
       <div ref={containerRef} className="relative cursor-fancy overflow-hidden">
         <Fade />
 
-        <button
+        {interfaceUI&&<button
           onClick={handleFullscreen}
-          className="fixed z-[11] top-0 right-0 p-2 rounded-bl-[18px] text-gray-200  bg-black"
+          className="fixed z-[13] top-0 right-0 p-2 rounded-bl-[18px] text-gray-200  bg-black"
         >
           {!fullscreen ? (
             <Fullscreen strokeWidth={1.2} size={23} />
           ) : (
             <Shrink strokeWidth={1.2} size={23} />
           )}
-        </button>
+        </button>}
         <button
-          className="fixed z-[11] bottom-0 left-0 p-2 rounded-tr-[18px] text-gray-200  bg-black"
+          className="fixed z-[13] bottom-0 left-0 p-2 rounded-tr-[18px] text-gray-200  bg-black"
           onClick={() => setInterfaceUI(!interfaceUI)}
         >
           {interfaceUI ? (
@@ -378,6 +379,7 @@ export default function Archviz() {
               />
             </>
           ) : null}
+          <Panorama />
           <div
             className={`aspect-video ${debug ? " h-1/4 " : "absolute  w-full"}`}
           >
